@@ -9,6 +9,8 @@ public class Game implements PlayGame {
 
         Game game1 = new Game();
 
+        // Turn this into a separate function or implement from interface and try to turn into a try/catch block
+
         System.out.println("Welcome to Rock, Paper, Scissors!");
         System.out.println("Enter name of Player 1.");
 
@@ -30,6 +32,8 @@ public class Game implements PlayGame {
             possibleChoices.add("Rock");
             possibleChoices.add("Paper");
             possibleChoices.add("Scissors");
+
+            // Make this a separate function or implement from interface and try to turn this into a try/catch
 
             System.out.println("Player 1, what do you choose? Type 'Rock', 'Paper', or 'Scissors'.");
             String player1Choice = scanner.nextLine();
