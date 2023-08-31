@@ -1,11 +1,8 @@
 package rockpaperscissors;
 
 // import java.lang.reflect.Array;
-import java.util.Optional;
-import java.util.Scanner;
+import java.util.*;
 import java.util.function.Consumer;
-import java.util.Random;
-import java.util.ArrayList;
 
 public class Game implements PlayGame {
     public static void main(String[] args) {
@@ -48,16 +45,24 @@ public class Game implements PlayGame {
                 int upperbound = 3;
                 // Generates random values from 0 - 2 using nextInt()
                 int randomNum = random.nextInt(upperbound);
+
                 String computerChoice = possibleChoices.get(randomNum);
+                System.out.println("Computer chose " + computerChoice);
 
                 ArrayList<String> winningCombos = new ArrayList<>();
-                { {"Rock", "Scissors"}, {"Scissors", "Paper"}, {"Paper", "Rock"} };
+                winningCombos.add(String.valueOf(new ArrayList<String>(Arrays.asList("Rock", "Scissors"))));
+                winningCombos.add(String.valueOf(new ArrayList<String>(Arrays.asList("Scissors", "Paper"))));
+                winningCombos.add(String.valueOf(new ArrayList<String>(Arrays.asList("Paper", "Rock"))));
+
+                System.out.println(winningCombos);
 
 
+                ArrayList<String> losingCombos = new ArrayList<>();
+                losingCombos.add(String.valueOf(new ArrayList<String>(Arrays.asList("Rock", "Paper"))));
+                losingCombos.add(String.valueOf(new ArrayList<String>(Arrays.asList("Paper", "Scissors"))));
+                losingCombos.add(String.valueOf(new ArrayList<String>(Arrays.asList("Scissors", "Rock"))));
 
-                String[][] losingCombos = new ArrayList<>();
-                { {"Rock", "Paper"}, {"Paper", "Scissors"}, {"Scissors", "Rock"} };
-
+                System.out.println(losingCombos);
 
 
                 // if (player1Choice)
@@ -65,6 +70,8 @@ public class Game implements PlayGame {
 
             } else {
                 System.out.println("You must enter 'Rock', 'Paper', or 'Scissors'. Please enter your choice.");
+
+                // Make this entire if/else statement a function outside main method or in interface to call again after above line.
             }
 
 
