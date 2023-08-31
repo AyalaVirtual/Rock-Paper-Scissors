@@ -1,6 +1,6 @@
 package rockpaperscissors;
 
-public class User extends Player /* implements HumanPlayer */ {
+public class User extends Player {
 
 
     public User(String name, int wins, int losses, int points, String choice) {

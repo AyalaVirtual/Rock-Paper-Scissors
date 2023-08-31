@@ -3,8 +3,10 @@ package rockpaperscissors;
 import java.util.Optional;
 import java.util.Scanner;
 import java.util.function.Consumer;
+import java.util.Random;
+import java.util.ArrayList;
 
-public class Game {
+public class Game implements PlayGame {
     public static void main(String[] args) {
 
         Game game1 = new Game();
@@ -26,19 +28,34 @@ public class Game {
 
             // game1.playSoloGame();
 
+            ArrayList<String> possibleChoices = new ArrayList<>();
+            possibleChoices.add("Rock");
+            possibleChoices.add("Paper");
+            possibleChoices.add("Scissors");
+
             System.out.println("Player 1, what do you choose? Type 'Rock', 'Paper', or 'Scissors'.");
             String player1Choice = scanner.nextLine();
 
-            player1.setChoice(player1Choice);
-            System.out.println("You chose " + player1Choice);
+
+            if (player1Choice.equalsIgnoreCase(possibleChoices.get(0)) || player1Choice.equalsIgnoreCase(possibleChoices.get(1)) || player1Choice.equalsIgnoreCase(possibleChoices.get(2))) {
+                player1.setChoice(player1Choice);
+                System.out.println("You chose " + player1Choice + "! Computer's turn.");
+                // int randomNum = (int) Math.floor(Math.random() * (3 - 1 + 1) + 1);
+
+                Random random = new Random();
+                // Sets the upper bound to generate random numbers in specific range
+                int upperbound = 3;
+                // Generates random values from 0 - 2 using nextInt()
+                int randomNum = random.nextInt(upperbound);
+                String computerChoice = possibleChoices.get(randomNum);
+
+                if ()
 
 
+            } else {
+                System.out.println("You must enter 'Rock', 'Paper', or 'Scissors'. Please enter your choice.");
+            }
 
-
-            /* if (player1Choice.equalsIgnoreCase("Rock")) {
-                player1.setChoice("Rock");
-                System.out.println("You chose 'Rock'.");
-            } */
 
 
         } else if (opponentChoice.equalsIgnoreCase("Player 2")) {
