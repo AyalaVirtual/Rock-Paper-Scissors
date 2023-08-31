@@ -1,5 +1,6 @@
 package rockpaperscissors;
 
+// import java.lang.reflect.Array;
 import java.util.Optional;
 import java.util.Scanner;
 import java.util.function.Consumer;
@@ -49,7 +50,17 @@ public class Game implements PlayGame {
                 int randomNum = random.nextInt(upperbound);
                 String computerChoice = possibleChoices.get(randomNum);
 
-                if ()
+                ArrayList<String> winningCombos = new ArrayList<>();
+                { {"Rock", "Scissors"}, {"Scissors", "Paper"}, {"Paper", "Rock"} };
+
+
+
+                String[][] losingCombos = new ArrayList<>();
+                { {"Rock", "Paper"}, {"Paper", "Scissors"}, {"Scissors", "Rock"} };
+
+
+
+                // if (player1Choice)
 
 
             } else {
