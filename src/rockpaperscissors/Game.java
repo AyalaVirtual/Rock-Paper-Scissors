@@ -95,8 +95,8 @@ public class Game implements PlayGame {
             computer.setChoice(computerChoice);
             System.out.println("Computer chose " + computerChoice);
 
-            ArrayList<String> gameHistory = new ArrayList<>();
-            gameHistory.add(String.valueOf(new ArrayList<String>(Arrays.asList(player1.getChoice(), computer.getChoice()))));
+            ArrayList<String> currentGameStats = new ArrayList<>();
+            currentGameStats.add(String.valueOf(new ArrayList<String>(Arrays.asList(player1.getChoice(), computer.getChoice()))));
 
 
             ArrayList<String> winningCombos = new ArrayList<>();
@@ -112,29 +112,31 @@ public class Game implements PlayGame {
             losingCombos.add(String.valueOf(new ArrayList<String>(Arrays.asList("Paper", "Scissors"))));
             losingCombos.add(String.valueOf(new ArrayList<String>(Arrays.asList("Scissors", "Rock"))));
 
+
             // System.out.println(losingCombos);
 
 
-            if (gameHistory.get(0).equals(winningCombos.get(0)) || gameHistory.get(0).equals(winningCombos.get(1)) || gameHistory.get(0).equals(winningCombos.get(2))) {
+            if (currentGameStats.get(0).equals(winningCombos.get(0)) || currentGameStats.get(0).equals(winningCombos.get(1)) || currentGameStats.get(0).equals(winningCombos.get(2))) {
 
                 int player1Wins = player1.getWins() + 1;
                 player1.setWins(player1Wins);
 
-                System.out.println(player1.getWins());
-
                 int player1Points = player1.getPoints() + 1;
                 player1.setPoints(player1Points);
 
-                System.out.println(player1.getPoints());
+                System.out.println(player1.getName() + " wins! Congratulations!");
 
-                String player1WinMsg = player1.getName() + " wins! Congratulations!";
+                currentGameStats.clear();
+
+                // Move optional outside of if/else statement so it only displays (isPresent) if player1 wins, otherwise set to .Empty()
+                String player1WinMsg = player1.getName() + "Wins: " + player1.getWins() + " | Points:" + player1.getPoints();
                 Optional<String> optionalPlayer1WinMsg = Optional.ofNullable(player1WinMsg);
 
                 if (optionalPlayer1WinMsg.isPresent()) {
                     System.out.println(optionalPlayer1WinMsg);
                 }
 
-            } else if (gameHistory.get(0).equalsIgnoreCase(losingCombos.get(0)) || gameHistory.get(0).equalsIgnoreCase(losingCombos.get(1)) || gameHistory.get(0).equalsIgnoreCase(losingCombos.get(2))){
+            } else if (currentGameStats.get(0).equalsIgnoreCase(losingCombos.get(0)) || currentGameStats.get(0).equalsIgnoreCase(losingCombos.get(1)) || currentGameStats.get(0).equalsIgnoreCase(losingCombos.get(2))){
 
                 System.out.println("Sorry, Computer wins! You lose!");
 
@@ -147,6 +149,8 @@ public class Game implements PlayGame {
                 computer.setPoints(computerPoints);
 
                 System.out.println(computer.getPoints());
+
+                currentGameStats.clear();
 
             } else if (player1Choice.equalsIgnoreCase(computerChoice)) {
 
@@ -162,6 +166,7 @@ public class Game implements PlayGame {
                    System.out.println(computer.getTies());
 
                  */
+                currentGameStats.clear();
             }
 
         } else {
