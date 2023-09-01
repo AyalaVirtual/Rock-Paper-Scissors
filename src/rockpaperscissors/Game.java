@@ -1,16 +1,17 @@
 package rockpaperscissors;
 
-import javax.swing.text.html.Option;
-import java.lang.reflect.Array;
-import java.util.*;
-import java.util.function.BiConsumer;
-import java.util.function.Consumer;
+import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Random;
+import java.util.Optional;
 
 public class Game implements PlayGame {
     public static void main(String[] args) {
 
         Game game1 = new Game();
 
+        /*
 
         System.out.println("Welcome to Rock, Paper, Scissors!");
         System.out.println("Enter name of Player 1.");
@@ -27,8 +28,31 @@ public class Game implements PlayGame {
 
         game1.getOpponentChoice(player1, player2);
 
+        */
+
+        game1.startIntro();
+
     }
 
+
+
+    @Override
+    public void startIntro() {
+        System.out.println("Welcome to Rock, Paper, Scissors!");
+        System.out.println("Enter name of Player 1.");
+
+        Scanner scanner = new Scanner(System.in);
+
+        User player1 = new User("Player 1", 0, 0, 0, "");
+        User player2 = new User("Player 2", 0, 0, 0, "");
+
+        String player1Name = scanner.nextLine();
+
+        player1.setName(player1Name);
+        System.out.println("Hi " + player1.getName() + "! Let's play!");
+
+        getOpponentChoice(player1, player2);
+    }
 
 
     @Override
@@ -117,16 +141,10 @@ public class Game implements PlayGame {
             winningCombos.add(String.valueOf(new ArrayList<String>(Arrays.asList("Paper", "Rock"))));
             winningCombos.add(String.valueOf(new ArrayList<String>(Arrays.asList("Scissors", "Paper"))));
 
-            // System.out.println(winningCombos);
-
-
             ArrayList<String> losingCombos = new ArrayList<>();
             losingCombos.add(String.valueOf(new ArrayList<String>(Arrays.asList("Rock", "Paper"))));
             losingCombos.add(String.valueOf(new ArrayList<String>(Arrays.asList("Paper", "Scissors"))));
             losingCombos.add(String.valueOf(new ArrayList<String>(Arrays.asList("Scissors", "Rock"))));
-
-
-            // System.out.println(losingCombos);
 
 
             // if ( currentGameStats.equalsIgnoreCase(winningCombos[0]) || currentGameStats.equalsIgnoreCase(winningCombos[1]) || currentGameStats.equalsIgnoreCase(winningCombos[2]) ) {
@@ -153,6 +171,8 @@ public class Game implements PlayGame {
                     System.out.println(optionalPlayer1WinMsg);
                 }
 
+                playAgain();
+
             } else if (currentGameStats.get(0).equalsIgnoreCase(losingCombos.get(0)) || currentGameStats.get(0).equalsIgnoreCase(losingCombos.get(1)) || currentGameStats.get(0).equalsIgnoreCase(losingCombos.get(2))){
 
                 System.out.println("Sorry, Computer wins! You lose!");
@@ -168,6 +188,8 @@ public class Game implements PlayGame {
 
                 gameHistory.add(currentGameStats);
                 currentGameStats.clear();
+
+                playAgain();
 
             } else if (player1Choice.equalsIgnoreCase(computerChoice)) {
 
@@ -185,12 +207,34 @@ public class Game implements PlayGame {
                  */
                 gameHistory.add(currentGameStats);
                 currentGameStats.clear();
+
+                playAgain();
             }
 
         } else {
 
             System.out.println("You must enter 'Rock', 'Paper', or 'Scissors'. Please enter your choice.");
             startGame(player1);
+        }
+    }
+
+
+    @Override
+    public void playAgain() {
+        System.out.println("Would you like to play again? Enter 'Yes' or 'No'.");
+
+        Scanner playAgainScanner = new Scanner(System.in);
+        String playAgainInput = playAgainScanner.nextLine();
+
+        if (playAgainInput.equalsIgnoreCase("Yes")) {
+            startIntro();
+
+        } else if (playAgainInput.equalsIgnoreCase("No")) {
+            System.out.println("Ok, thanks for playing!");
+
+        } else {
+            System.out.println("Invalid input. You must enter 'Yes' or 'No'.");
+            playAgain();
         }
     }
 
