@@ -98,12 +98,24 @@ public class Game implements PlayGame {
             ArrayList<String> currentGameStats = new ArrayList<>();
             currentGameStats.add(String.valueOf(new ArrayList<String>(Arrays.asList(player1.getChoice(), computer.getChoice()))));
 
+            /*
+            String[] currentGameStats =  new String[2];
+            currentGameStats[0] = player1.getChoice();
+            currentGameStats[1] = computer.getChoice();
+            */
+
             ArrayList<Object> gameHistory = new ArrayList<>();
+
+            /*
+            String[] winningCombos = new String[3];
+            String[][] winningCombos = { {"Rock", "Scissors"}, {"Paper", "Rock"}, {"Scissors", "Paper"} };
+            String[][] losingCombos = { {"Rock", "Paper"}, {"Paper", "Scissors"}, {"Scissors", "Rock"} };
+            */
 
             ArrayList<String> winningCombos = new ArrayList<>();
             winningCombos.add(String.valueOf(new ArrayList<String>(Arrays.asList("Rock", "Scissors"))));
-            winningCombos.add(String.valueOf(new ArrayList<String>(Arrays.asList("Scissors", "Paper"))));
             winningCombos.add(String.valueOf(new ArrayList<String>(Arrays.asList("Paper", "Rock"))));
+            winningCombos.add(String.valueOf(new ArrayList<String>(Arrays.asList("Scissors", "Paper"))));
 
             // System.out.println(winningCombos);
 
@@ -117,7 +129,10 @@ public class Game implements PlayGame {
             // System.out.println(losingCombos);
 
 
-            if (currentGameStats.get(0).equals(winningCombos.get(0)) || currentGameStats.get(0).equals(winningCombos.get(1)) || currentGameStats.get(0).equals(winningCombos.get(2))) {
+            // if ( currentGameStats.equalsIgnoreCase(winningCombos[0]) || currentGameStats.equalsIgnoreCase(winningCombos[1]) || currentGameStats.equalsIgnoreCase(winningCombos[2]) ) {
+
+
+            if (currentGameStats.get(0).equalsIgnoreCase(winningCombos.get(0)) || currentGameStats.get(0).equalsIgnoreCase(winningCombos.get(1)) || currentGameStats.get(0).equalsIgnoreCase(winningCombos.get(2))) {
 
                 int player1Wins = player1.getWins() + 1;
                 player1.setWins(player1Wins);
