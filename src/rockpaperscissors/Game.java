@@ -98,6 +98,7 @@ public class Game implements PlayGame {
             ArrayList<String> currentGameStats = new ArrayList<>();
             currentGameStats.add(String.valueOf(new ArrayList<String>(Arrays.asList(player1.getChoice(), computer.getChoice()))));
 
+            ArrayList<Object> gameHistory = new ArrayList<>();
 
             ArrayList<String> winningCombos = new ArrayList<>();
             winningCombos.add(String.valueOf(new ArrayList<String>(Arrays.asList("Rock", "Scissors"))));
@@ -126,10 +127,11 @@ public class Game implements PlayGame {
 
                 System.out.println(player1.getName() + " wins! Congratulations!");
 
+                gameHistory.add(currentGameStats);
                 currentGameStats.clear();
 
                 // Move optional outside of if/else statement so it only displays (isPresent) if player1 wins, otherwise set to .Empty()
-                String player1WinMsg = player1.getName() + "Wins: " + player1.getWins() + " | Points:" + player1.getPoints();
+                String player1WinMsg = player1.getName() + " Wins: " + player1.getWins() + " | Points: " + player1.getPoints();
                 Optional<String> optionalPlayer1WinMsg = Optional.ofNullable(player1WinMsg);
 
                 if (optionalPlayer1WinMsg.isPresent()) {
@@ -143,13 +145,13 @@ public class Game implements PlayGame {
                 int computerWins = computer.getWins() + 1;
                 computer.setWins(computerWins);
 
-                System.out.println(computer.getWins());
-
                 int computerPoints = computer.getPoints() + 1;
                 computer.setPoints(computerPoints);
 
-                System.out.println(computer.getPoints());
+                String computerWinMsg = "Computer Wins: " + computer.getWins() + " | Computer Points: " + computer.getPoints();
+                System.out.println(computerWinMsg);
 
+                gameHistory.add(currentGameStats);
                 currentGameStats.clear();
 
             } else if (player1Choice.equalsIgnoreCase(computerChoice)) {
@@ -166,6 +168,7 @@ public class Game implements PlayGame {
                    System.out.println(computer.getTies());
 
                  */
+                gameHistory.add(currentGameStats);
                 currentGameStats.clear();
             }
 
@@ -177,7 +180,7 @@ public class Game implements PlayGame {
     }
 
 
-
+    // Finish logic for this method
     @Override
     public void start2PlayerGame(User player1, User player2) {
         System.out.println("Player 1, what do you choose? Type 'Rock', 'Paper', or 'Scissors'.");
