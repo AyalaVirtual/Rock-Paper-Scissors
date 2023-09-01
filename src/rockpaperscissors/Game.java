@@ -1,6 +1,6 @@
 package rockpaperscissors;
 
-// import java.lang.reflect.Array;
+import javax.swing.text.html.Option;
 import java.util.*;
 import java.util.function.Consumer;
 
@@ -15,11 +15,12 @@ public class Game implements PlayGame {
 
         Scanner scanner = new Scanner(System.in);
 
-        // Make player names optionals
-        String player1Name = scanner.nextLine();
-        User player1 = new User(player1Name, 0, 0, 0, "");
+        User player1 = new User(null, 0, 0, 0, "");
 
-        System.out.println("Hi " + player1.getName() + "!");
+        String player1Name = scanner.nextLine();
+
+        player1.setName(player1Name);
+        System.out.println("Ok " + player1.getName() + "! Let's play!");
 
 
 
@@ -106,17 +107,12 @@ public class Game implements PlayGame {
 
 
 
-
-    /* public void playSoloGame() {
-        System.out.println("Player 1, what do you choose? Type 'Rock', 'Paper', or 'Scissors'.");
-        String Player1Choice = User :: getChoice;
-    } */
-
-
     public void play2PlayerGame() {
         System.out.println("Player 1, what do you choose? Type 'Rock', 'Paper', or 'Scissors'.");
         // String Player1Choice = player1.getMove();
     }
+
+
 
 
     @Override
@@ -143,6 +139,9 @@ public class Game implements PlayGame {
     }
 
 
+
+
+
     @Override
     public void getUserChoice() {
 
@@ -156,7 +155,7 @@ public class Game implements PlayGame {
 
 
         if (player1Choice.equalsIgnoreCase(possibleChoices.get(0)) || player1Choice.equalsIgnoreCase(possibleChoices.get(1)) || player1Choice.equalsIgnoreCase(possibleChoices.get(2))) {
-            player1.setChoice(player1Choice);
+            //player1.setChoice(player1Choice);
             System.out.println("You chose " + player1Choice + "! Computer's turn.");
             // int randomNum = (int) Math.floor(Math.random() * (3 - 1 + 1) + 1);
 
@@ -174,7 +173,7 @@ public class Game implements PlayGame {
             winningCombos.add(String.valueOf(new ArrayList<String>(Arrays.asList("Scissors", "Paper"))));
             winningCombos.add(String.valueOf(new ArrayList<String>(Arrays.asList("Paper", "Rock"))));
 
-            System.out.println(winningCombos);
+            // System.out.println(winningCombos);
 
 
             ArrayList<String> losingCombos = new ArrayList<>();
@@ -182,7 +181,7 @@ public class Game implements PlayGame {
             losingCombos.add(String.valueOf(new ArrayList<String>(Arrays.asList("Paper", "Scissors"))));
             losingCombos.add(String.valueOf(new ArrayList<String>(Arrays.asList("Scissors", "Rock"))));
 
-            System.out.println(losingCombos);
+            // System.out.println(losingCombos);
 
 
             // if (player1Choice)
@@ -193,6 +192,8 @@ public class Game implements PlayGame {
             getUserChoice();
         }
     }
+
+
 
 
 

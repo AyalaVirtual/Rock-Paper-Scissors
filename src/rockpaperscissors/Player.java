@@ -1,6 +1,8 @@
 package rockpaperscissors;
 
-abstract class Player {
+import java.util.Optional;
+
+public abstract class Player {
     private String name;
     private int wins;
     private int losses;
@@ -46,6 +48,7 @@ abstract class Player {
     public void setPoints(int points) {
         this.points = points;
     }
+
 
 
     public String getChoice() {
