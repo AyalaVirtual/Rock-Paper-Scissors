@@ -1,7 +1,9 @@
 package rockpaperscissors;
 
 import javax.swing.text.html.Option;
+import java.lang.reflect.Array;
 import java.util.*;
+import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
 public class Game implements PlayGame {
@@ -15,28 +17,65 @@ public class Game implements PlayGame {
 
         Scanner scanner = new Scanner(System.in);
 
-        User player1 = new User(null, 0, 0, 0, "");
+        User player1 = new User("Player 1", 0, 0, 0, "");
+        User player2 = new User("Player 2", 0, 0, 0, "");
 
         String player1Name = scanner.nextLine();
 
         player1.setName(player1Name);
-        System.out.println("Ok " + player1.getName() + "! Let's play!");
+        System.out.println("Hi " + player1.getName() + "! Let's play!");
+
+        game1.getOpponentChoice(player1, player2);
+
+    }
 
 
 
-        /* System.out.println("Choose your opponent. Type 'Computer' or 'Player 2'.");
+    @Override
+    public void getOpponentChoice(User player1, User player2) {
+
+        System.out.println("Choose your opponent. Type 'Computer' or 'Player 2'.");
+        Scanner scanner = new Scanner(System.in);
         String opponentChoice = scanner.nextLine();
 
         if (opponentChoice.equalsIgnoreCase("Computer")) {
-            System.out.println("You've chosen to play against the computer. Let's play!");
 
-         */
+            System.out.println("You've chosen to play against the computer.");
+            System.out.println("Player 1, you're up first! Enter your choice: 'Rock', 'Paper', or 'Scissors'.");
+
+            startGame(player1);
+
+        } else if (opponentChoice.equalsIgnoreCase("Player 2")) {
+
+            System.out.println("You've chosen to play against a friend.");
+            System.out.println("Enter name of Player 2.");
+
+            String player2Name = scanner.nextLine();
+            // User player2 = new User(player2Name, 0, 0, 0, "");
+
+            start2PlayerGame(player1, player2);
+
+        } else {
+
+            System.out.println("You must choose between 'Computer' and 'Player2'. Please enter your choice.");
+            getOpponentChoice(player1, player2);
+
+        }
+
+    }
 
 
+    public void startGame(User player1) {
 
-        // Make this a separate function or implement from interface and try to turn this into a try/catch
+        Scanner playerChoiceScanner = new Scanner(System.in);
+        String player1Choice = playerChoiceScanner.nextLine();
 
-            /*
+        if ( player1Choice.equalsIgnoreCase("Rock") || player1Choice.equalsIgnoreCase("Paper") || player1Choice.equalsIgnoreCase("Scissors") ) {
+
+            player1.setChoice(player1Choice);
+            System.out.println("You chose " + player1.getChoice() + "! Computer's turn.");
+
+            // int randomNum = (int) Math.floor(Math.random() * (3 - 1 + 1) + 1);
 
             Computer computer = new Computer("Computer", 0, 0, 0, "");
 
@@ -45,128 +84,20 @@ public class Game implements PlayGame {
             possibleChoices.add("Paper");
             possibleChoices.add("Scissors");
 
-
-            System.out.println("Player 1, what do you choose? Type 'Rock', 'Paper', or 'Scissors'.");
-            String player1Choice = scanner.nextLine();
-
-
-            if (player1Choice.equalsIgnoreCase(possibleChoices.get(0)) || player1Choice.equalsIgnoreCase(possibleChoices.get(1)) || player1Choice.equalsIgnoreCase(possibleChoices.get(2))) {
-                player1.setChoice(player1Choice);
-                System.out.println("You chose " + player1Choice + "! Computer's turn.");
-                // int randomNum = (int) Math.floor(Math.random() * (3 - 1 + 1) + 1);
-
-                Random random = new Random();
-                // Sets the upper bound to generate random numbers in specific range
-                int upperbound = 3;
-                // Generates random values from 0 - 2 using nextInt()
-                int randomNum = random.nextInt(upperbound);
-
-                String computerChoice = possibleChoices.get(randomNum);
-                System.out.println("Computer chose " + computerChoice);
-
-                ArrayList<String> winningCombos = new ArrayList<>();
-                winningCombos.add(String.valueOf(new ArrayList<String>(Arrays.asList("Rock", "Scissors"))));
-                winningCombos.add(String.valueOf(new ArrayList<String>(Arrays.asList("Scissors", "Paper"))));
-                winningCombos.add(String.valueOf(new ArrayList<String>(Arrays.asList("Paper", "Rock"))));
-
-                System.out.println(winningCombos);
-
-
-                ArrayList<String> losingCombos = new ArrayList<>();
-                losingCombos.add(String.valueOf(new ArrayList<String>(Arrays.asList("Rock", "Paper"))));
-                losingCombos.add(String.valueOf(new ArrayList<String>(Arrays.asList("Paper", "Scissors"))));
-                losingCombos.add(String.valueOf(new ArrayList<String>(Arrays.asList("Scissors", "Rock"))));
-
-                System.out.println(losingCombos);
-
-
-                // if (player1Choice)
-
-
-            } else {
-                System.out.println("You must enter 'Rock', 'Paper', or 'Scissors'. Please enter your choice.");
-
-                // Make this entire if/else statement a function outside main method or in interface to call again after above line.
-            }
-
-            */
-
-        /*
-
-        } else if (opponentChoice.equalsIgnoreCase("Player 2")) {
-            System.out.println("Enter name of Player 2.");
-            String player2Name = scanner.nextLine();
-            User player2 = new User(player2Name, 0, 0, 0, "");
-            System.out.println("You've chosen to play against a friend. Let's play!");
-            // game1.play2PlayerGame();
-        }
-
-         */
-
-    }
-
-
-
-    public void play2PlayerGame() {
-        System.out.println("Player 1, what do you choose? Type 'Rock', 'Paper', or 'Scissors'.");
-        // String Player1Choice = player1.getMove();
-    }
-
-
-
-
-    @Override
-    public void getOpponentChoice() {
-        System.out.println("Choose your opponent. Type 'Computer' or 'Player 2'.");
-        Scanner scanner = new Scanner(System.in);
-        String opponentChoice = scanner.nextLine();
-
-        if (opponentChoice.equalsIgnoreCase("Computer")) {
-            System.out.println("You've chosen to play against the computer. Let's play!");
-
-
-        } else if (opponentChoice.equalsIgnoreCase("Player 2")) {
-            System.out.println("Enter name of Player 2.");
-
-            // Make player names optionals
-            String player2Name = scanner.nextLine();
-            User player2 = new User(player2Name, 0, 0, 0, "");
-            System.out.println("You've chosen to play against a friend. Let's play!");
-            // game1.play2PlayerGame();
-
-
-        }
-    }
-
-
-
-
-
-    @Override
-    public void getUserChoice() {
-
-        ArrayList<String> possibleChoices = new ArrayList<>();
-        possibleChoices.add("Rock");
-        possibleChoices.add("Paper");
-        possibleChoices.add("Scissors");
-
-        Scanner playerChoiceScanner = new Scanner(System.in);
-        String player1Choice = playerChoiceScanner.nextLine();
-
-
-        if (player1Choice.equalsIgnoreCase(possibleChoices.get(0)) || player1Choice.equalsIgnoreCase(possibleChoices.get(1)) || player1Choice.equalsIgnoreCase(possibleChoices.get(2))) {
-            //player1.setChoice(player1Choice);
-            System.out.println("You chose " + player1Choice + "! Computer's turn.");
-            // int randomNum = (int) Math.floor(Math.random() * (3 - 1 + 1) + 1);
-
             Random random = new Random();
             // Sets the upper bound to generate random numbers in specific range
             int upperbound = 3;
             // Generates random values from 0 - 2 using nextInt()
             int randomNum = random.nextInt(upperbound);
 
+
             String computerChoice = possibleChoices.get(randomNum);
+            computer.setChoice(computerChoice);
             System.out.println("Computer chose " + computerChoice);
+
+            ArrayList<String> gameHistory = new ArrayList<>();
+            gameHistory.add(String.valueOf(new ArrayList<String>(Arrays.asList(player1.getChoice(), computer.getChoice()))));
+
 
             ArrayList<String> winningCombos = new ArrayList<>();
             winningCombos.add(String.valueOf(new ArrayList<String>(Arrays.asList("Rock", "Scissors"))));
@@ -184,16 +115,69 @@ public class Game implements PlayGame {
             // System.out.println(losingCombos);
 
 
-            // if (player1Choice)
+            if (gameHistory.get(0).equals(winningCombos.get(0)) || gameHistory.get(0).equals(winningCombos.get(1)) || gameHistory.get(0).equals(winningCombos.get(2))) {
 
+                int player1Wins = player1.getWins() + 1;
+                player1.setWins(player1Wins);
+
+                System.out.println(player1.getWins());
+
+                int player1Points = player1.getPoints() + 1;
+                player1.setPoints(player1Points);
+
+                System.out.println(player1.getPoints());
+
+                String player1WinMsg = player1.getName() + " wins! Congratulations!";
+                Optional<String> optionalPlayer1WinMsg = Optional.ofNullable(player1WinMsg);
+
+                if (optionalPlayer1WinMsg.isPresent()) {
+                    System.out.println(optionalPlayer1WinMsg);
+                }
+
+            } else if (gameHistory.get(0).equalsIgnoreCase(losingCombos.get(0)) || gameHistory.get(0).equalsIgnoreCase(losingCombos.get(1)) || gameHistory.get(0).equalsIgnoreCase(losingCombos.get(2))){
+
+                System.out.println("Sorry, Computer wins! You lose!");
+
+                int computerWins = computer.getWins() + 1;
+                computer.setWins(computerWins);
+
+                System.out.println(computer.getWins());
+
+                int computerPoints = computer.getPoints() + 1;
+                computer.setPoints(computerPoints);
+
+                System.out.println(computer.getPoints());
+
+            } else if (player1Choice.equalsIgnoreCase(computerChoice)) {
+
+                System.out.println("It's a tie!");
+                /*
+
+                   int player1Ties = player1.getTies() + 1;
+                   player1.setTies(player1Ties);
+                   System.out.println(player1.getTie());
+
+                   int computerTies = computer.getTies() + 1;
+                   computer.setTies(computerTies);
+                   System.out.println(computer.getTies());
+
+                 */
+            }
 
         } else {
+
             System.out.println("You must enter 'Rock', 'Paper', or 'Scissors'. Please enter your choice.");
-            getUserChoice();
+            startGame(player1);
         }
     }
 
 
+
+    @Override
+    public void start2PlayerGame(User player1, User player2) {
+        System.out.println("Player 1, what do you choose? Type 'Rock', 'Paper', or 'Scissors'.");
+        // String Player1Choice = player1.getMove();
+    }
 
 
 
