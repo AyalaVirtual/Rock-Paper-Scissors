@@ -1,12 +1,10 @@
 package rockpaperscissors;
 
-import java.util.Optional;
-
 public class Computer extends Player {
+    private static final String name = "Computer";
 
-
-    public Computer(String name, int wins, int losses, int points, String choice) {
-        super(name, wins, losses, points, choice);
+    public Computer(/* String name, */ int wins, int losses, int points, String choice, String name) {
+        super(/* name, */ wins, losses, points, choice);
 
     }
 

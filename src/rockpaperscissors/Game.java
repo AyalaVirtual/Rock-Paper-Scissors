@@ -43,8 +43,8 @@ public class Game implements PlayGame {
 
         Scanner scanner = new Scanner(System.in);
 
-        User player1 = new User("Player 1", 0, 0, 0, "");
-        User player2 = new User("Player 2", 0, 0, 0, "");
+        User player1 = new User(0, 0, 0, "", "Player 1");
+        User player2 = new User(0, 0, 0, "", "Player 2");
 
         String player1Name = scanner.nextLine();
 
@@ -101,7 +101,7 @@ public class Game implements PlayGame {
 
             // int randomNum = (int) Math.floor(Math.random() * (3 - 1 + 1) + 1);
 
-            Computer computer = new Computer("Computer", 0, 0, 0, "");
+            Computer computer = new Computer(0, 0, 0, "", "Computer");
 
             ArrayList<String> possibleChoices = new ArrayList<>();
             possibleChoices.add("Rock");
@@ -205,6 +205,8 @@ public class Game implements PlayGame {
                    System.out.println(computer.getTies());
 
                  */
+
+                // Make currentGameStats a List/Collection and use a lambda expression to stream/map contents to gameHistory before clearing currentGameStats
                 gameHistory.add(currentGameStats);
                 currentGameStats.clear();
 
