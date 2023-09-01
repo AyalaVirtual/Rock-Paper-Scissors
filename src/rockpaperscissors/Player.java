@@ -1,34 +1,21 @@
 package rockpaperscissors;
 
 public abstract class Player {
-    // private String name;
     private int wins;
     private int losses;
     private int points;
     private String choice;
 
-    public Player(/* String name, */ int wins, int losses, int points, String choice) {
-        // this.name = name;
+    public Player(int wins, int losses, int points, String choice) {
         this.wins = wins;
         this.losses = losses;
         this.points = points;
         this.choice = choice;
     }
 
-    /*
-
-    public String getName() {
-        return this.name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    */
 
     public int getWins() {
-        return wins;
+        return this.wins;
     }
 
     public void setWins(int wins) {
@@ -36,7 +23,7 @@ public abstract class Player {
     }
 
     public int getLosses() {
-        return losses;
+        return this.losses;
     }
 
     public void setLosses(int losses) {
@@ -44,14 +31,12 @@ public abstract class Player {
     }
 
     public int getPoints() {
-        return points;
+        return this.points;
     }
 
     public void setPoints(int points) {
         this.points = points;
     }
-
-
 
     public String getChoice() {
         return this.choice;
