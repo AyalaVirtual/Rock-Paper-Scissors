@@ -89,15 +89,7 @@ public class Game implements PlayGame {
 
             Computer computer = new Computer(0, 0, 0, "", "Computer");
 
-
-            Object opponent = computer;
-
-            if (opponent.equals(computer)) {
-                System.out.println("Opponent is computer.");
-            } else {
-                System.out.println("Opponent is Player 2.");
-            }
-
+            /*
 
             ArrayList<String> possibleChoices = new ArrayList<>();
             possibleChoices.add("Rock");
@@ -110,29 +102,22 @@ public class Game implements PlayGame {
             // Generates random values from 0 - 2 using nextInt()
             int randomNum = random.nextInt(upperbound);
 
-
             String computerChoice = possibleChoices.get(randomNum);
+            computer.setChoice(computerChoice);
+            System.out.println("Computer chose " + computerChoice);
+
+             */
+
+            String computerChoice = computer.makeRandomChoice();
+
             computer.setChoice(computerChoice);
             System.out.println("Computer chose " + computerChoice);
 
             ArrayList<String> currentGameStats = new ArrayList<>();
             currentGameStats.add(String.valueOf(new ArrayList<String>(Arrays.asList(player1.getChoice(), computer.getChoice()))));
 
-            /*
-            String[] currentGameStats =  new String[2];
-            currentGameStats[0] = player1.getChoice();
-            currentGameStats[1] = computer.getChoice();
-            */
-
             // Make currentGameStats a List/Collection and use a lambda expression to stream/map contents to gameHistory before clearing currentGameStats
             ArrayList<Object> gameHistory = new ArrayList<>();
-
-            /*
-            String[] winningCombos = new String[3];
-            String[][] winningCombos = { {"Rock", "Scissors"}, {"Paper", "Rock"}, {"Scissors", "Paper"} };
-            String[][] losingCombos = { {"Rock", "Paper"}, {"Paper", "Scissors"}, {"Scissors", "Rock"} };
-            */
-
 
             /*
 
@@ -257,14 +242,14 @@ public class Game implements PlayGame {
         player2.setName(player2Name);
         System.out.println("Hi " + player2.getName() + ", Let's play!");
 
-        System.out.println("Player 1, you're up first! Enter your choice: 'Rock', 'Paper', or 'Scissors'.");
+        System.out.println(player1.getName() + ", you're up first! Enter your choice: 'Rock', 'Paper', or 'Scissors'.");
         String player1Choice = twoPlayerScanner.nextLine();
 
         if ( player1Choice.equalsIgnoreCase("Rock") || player1Choice.equalsIgnoreCase("Paper") || player1Choice.equalsIgnoreCase("Scissors") ) {
 
             player1.setChoice(player1Choice);
             System.out.println("You chose " + player1.getChoice() + "! " + player2.getName() + "'s turn.");
-            System.out.println(player2.getName() + ", enter your choice: 'Rock', 'Paper', or 'Scissors'.");
+            System.out.println(player2.getName() + ", you're up! Enter your choice: 'Rock', 'Paper', or 'Scissors'.");
 
             String player2Choice = twoPlayerScanner.nextLine();
             player2.setChoice(player2Choice);
