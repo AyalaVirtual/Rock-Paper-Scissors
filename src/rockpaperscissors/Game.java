@@ -166,7 +166,11 @@ public class Game implements PlayGame {
 
                 optionalComputerWinMsg.ifPresent(System.out::println);
 
+                gameHistory = currentGameStats.stream().collect(Collectors.toCollection(ArrayList :: new));
                 currentGameStats.clear();
+
+                String gameHistoryMsg = "Game History: " + gameHistory;
+                System.out.println(gameHistoryMsg);
 
                 playAgain(winningCombos, losingCombos);
 
@@ -185,7 +189,11 @@ public class Game implements PlayGame {
 
                  */
 
+                gameHistory = currentGameStats.stream().collect(Collectors.toCollection(ArrayList :: new));
                 currentGameStats.clear();
+
+                String gameHistoryMsg = "Game History: " + gameHistory;
+                System.out.println(gameHistoryMsg);
 
                 playAgain(winningCombos, losingCombos);
             }
