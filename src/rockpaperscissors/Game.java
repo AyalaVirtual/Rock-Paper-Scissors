@@ -25,8 +25,10 @@ public class Game implements PlayGame {
 
     /**
      *
-     * @param winningCombos
-     * @param losingCombos
+     * @param winningCombos ArrayList of all possible winning combinations, with first index of each inner List representing player1's move, and the second index representing the opponent (either computer or player2)
+     * @param losingCombos ArrayList of all possible losing combinations, with first index of each inner List representing player1's move, and the second index representing the opponent (either computer or player2)
+     *
+     * Prints intro message and prompts user/player1 for their name before calling the next method, getOpponentChoice() to determine 1-player or 2-player mode
      */
     @Override
     public void startIntro(ArrayList<String> winningCombos, ArrayList<String> losingCombos) {
@@ -49,11 +51,13 @@ public class Game implements PlayGame {
 
     /**
      *
-     * @param player1
-     * @param player2
-     * @param winningCombos
-     * @param losingCombos
-     * @throws NoSuchElementException
+     * @param player1 object instance of User Class representing player1
+     * @param player2 object instance of User Class representing player2
+     * @param winningCombos ArrayList of all possible winning combinations, with first index of each inner List representing player1's move, and the second index representing the opponent (either computer or player2)
+     * @param losingCombos ArrayList of all possible losing combinations, with first index of each inner List representing player1's move, and the second index representing the opponent (either computer or player2)
+     * @throws NoSuchElementException Exception thrown by different accessor methods to indicate that the requested element does not exist
+     *
+     * Prompts player1 and checks for invalid input before determining if they want to play in 1-player or 2-player mode before calling the corresponding method ( startGame() or start2PlayerGame() )
      */
     @Override
     public void getOpponentChoice(User player1, User player2, ArrayList<String> winningCombos, ArrayList<String> losingCombos) throws NoSuchElementException {
@@ -94,10 +98,12 @@ public class Game implements PlayGame {
 
     /**
      *
-     * @param player1
-     * @param player2
-     * @param winningCombos
-     * @param losingCombos
+     * @param player1 object instance of User Class representing player1
+     * @param player2 object instance of User Class representing player2
+     * @param winningCombos ArrayList of all possible winning combinations, with first index of each inner List representing player1's move, and the second index representing the opponent (either computer or player2)
+     * @param losingCombos ArrayList of all possible losing combinations, with first index of each inner List representing player1's move, and the second index representing the opponent (either computer or player2)
+     *
+     * Starts 1-player mode gameplay, checking that player1's input is valid before adding it to an ArrayList (currentGameStats) and comparing that ArrayList to the ArrayLists of all possible winning and losing combos to determine game outcome, announce winner, and award points before calling another method ( playAgain() ) to determine if players want to continue playing
      */
     public void startGame(User player1, User player2, ArrayList<String> winningCombos, ArrayList<String> losingCombos) {
 
@@ -195,10 +201,13 @@ public class Game implements PlayGame {
         }
     }
 
+
     /**
      *
-     * @param winningCombos
-     * @param losingCombos
+     * @param winningCombos ArrayList of all possible winning combinations, with first index of each inner List representing player1's move, and the second index representing the opponent (either computer or player2)
+     * @param losingCombos ArrayList of all possible losing combinations, with first index of each inner List representing player1's move, and the second index representing the opponent (either computer or player2)
+     *
+     * Prompts player1 and checks for invalid input to determine if they want to continue playing
      */
     @Override
     public void playAgain(ArrayList<String> winningCombos, ArrayList<String> losingCombos) {
@@ -222,10 +231,12 @@ public class Game implements PlayGame {
 
     /**
      *
-     * @param player1
-     * @param player2
-     * @param winningCombos
-     * @param losingCombos
+     * @param player1 object instance of User Class representing player1
+     * @param player2 object instance of User Class representing player2
+     * @param winningCombos ArrayList of all possible winning combinations, with first index of each inner List representing player1's move, and the second index representing the opponent (either computer or player2)
+     * @param losingCombos ArrayList of all possible losing combinations, with first index of each inner List representing player1's move, and the second index representing the opponent (either computer or player2)
+     *
+     * Starts 2-player mode gameplay, prompting player2 for their name before prompting players and checking their input is valid before adding it to an ArrayList (currentGameStats) and comparing that ArrayList to the ArrayLists of all possible winning and losing combos to determine game outcome, announce winner, and award points before calling another method ( playAgain() ) to determine if players want to continue playing
      */
     @Override
     public void start2PlayerGame(User player1, User player2, ArrayList<String> winningCombos, ArrayList<String> losingCombos) {
