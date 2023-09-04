@@ -295,7 +295,9 @@ public class Game implements PlayGame {
                 player2.setPoints(player2Points);
 
                 String player2WinMsg = player2.getName() + "'s Game Stats: Wins: " + player2.getWins() + " | Points: " + player2.getPoints();
-                System.out.println(player2WinMsg);
+                Optional<String> optionalPlayer2WinMsg = Optional.ofNullable(player2WinMsg);
+
+                optionalPlayer2WinMsg.ifPresent(System.out::println);
 
                 gameHistory = currentGameStats.stream().collect(Collectors.toCollection(ArrayList :: new));
                 currentGameStats.clear();
