@@ -23,7 +23,11 @@ public class Game implements PlayGame {
     }
 
 
-
+    /**
+     *
+     * @param winningCombos
+     * @param losingCombos
+     */
     @Override
     public void startIntro(ArrayList<String> winningCombos, ArrayList<String> losingCombos) {
         System.out.println("Welcome to Rock, Paper, Scissors!");
@@ -43,6 +47,14 @@ public class Game implements PlayGame {
     }
 
 
+    /**
+     *
+     * @param player1
+     * @param player2
+     * @param winningCombos
+     * @param losingCombos
+     * @throws NoSuchElementException
+     */
     @Override
     public void getOpponentChoice(User player1, User player2, ArrayList<String> winningCombos, ArrayList<String> losingCombos) throws NoSuchElementException {
 
@@ -77,35 +89,16 @@ public class Game implements PlayGame {
 
             System.err.println("Caught NoSuchElementException: " + noSuchElementException.getMessage());
         }
-
-
-
-
-        /* Scanner opponentChoiceScanner = new Scanner(System.in);
-        String opponentChoice = opponentChoiceScanner.nextLine();
-
-        if (opponentChoice.equalsIgnoreCase("Computer")) {
-
-            System.out.println("You've chosen to play against the computer.");
-            System.out.println("Player 1, you're up first! Enter your choice: 'Rock', 'Paper', or 'Scissors'.");
-
-            startGame(player1, player2, winningCombos, losingCombos);
-
-        } else if (opponentChoice.equalsIgnoreCase("Player 2")) {
-
-            System.out.println("You've chosen to play against a friend.");
-            // start2PlayerGame(player1);
-            start2PlayerGame(player1, player2, winningCombos, losingCombos);
-
-        } else {
-
-            System.out.println("You must choose between 'Computer' and 'Player2'. Please enter your choice.");
-            getOpponentChoice(player1, player2, winningCombos, losingCombos);
-
-        } */
     }
 
 
+    /**
+     *
+     * @param player1
+     * @param player2
+     * @param winningCombos
+     * @param losingCombos
+     */
     public void startGame(User player1, User player2, ArrayList<String> winningCombos, ArrayList<String> losingCombos) {
 
         Scanner startGameScanner = new Scanner(System.in);
@@ -202,7 +195,11 @@ public class Game implements PlayGame {
         }
     }
 
-
+    /**
+     *
+     * @param winningCombos
+     * @param losingCombos
+     */
     @Override
     public void playAgain(ArrayList<String> winningCombos, ArrayList<String> losingCombos) {
         System.out.println("Would you like to play again? Enter 'Yes' or 'No'.");
@@ -223,7 +220,13 @@ public class Game implements PlayGame {
     }
 
 
-    // Finish logic for this method
+    /**
+     *
+     * @param player1
+     * @param player2
+     * @param winningCombos
+     * @param losingCombos
+     */
     @Override
     public void start2PlayerGame(User player1, User player2, ArrayList<String> winningCombos, ArrayList<String> losingCombos) {
 
