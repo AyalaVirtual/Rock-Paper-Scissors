@@ -146,6 +146,9 @@ public class Game implements PlayGame {
 
                 optionalPlayer1WinMsg.ifPresent(System.out::println);
 
+                String gameHistoryMsg = "Game History: " + gameHistory;
+                System.out.println(gameHistoryMsg);
+
                 playAgain(winningCombos, losingCombos);
 
             } else if (currentGameStats.get(0).equalsIgnoreCase(losingCombos.get(0)) || currentGameStats.get(0).equalsIgnoreCase(losingCombos.get(1)) || currentGameStats.get(0).equalsIgnoreCase(losingCombos.get(2))){
