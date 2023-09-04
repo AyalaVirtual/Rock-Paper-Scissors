@@ -109,15 +109,6 @@ public class Game implements PlayGame {
 
         List<String> gameHistory;
 
-        /*
-        Scanner startGameScanner = new Scanner(System.in);
-        String player1Choice = startGameScanner.nextLine();
-
-        if ( player1Choice.equalsIgnoreCase("Rock") || player1Choice.equalsIgnoreCase("Paper") || player1Choice.equalsIgnoreCase("Scissors") ) {
-
-            player1.setChoice(player1Choice);
-
-         */
             player1.validateChoice();
 
             System.out.println("You chose " + player1.getChoice() + "! Computer's turn.");
@@ -191,14 +182,7 @@ public class Game implements PlayGame {
 
                 playAgain(winningCombos, losingCombos);
             }
-        /*
-        } else {
 
-            System.out.println("You must enter 'Rock', 'Paper', or 'Scissors'. Please enter your choice.");
-            startGame(player1, player2, winningCombos, losingCombos);
-        }
-
-         */
     }
 
 
