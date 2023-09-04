@@ -284,8 +284,15 @@ public class Game implements PlayGame {
                 gameHistory.add(currentGameStats);
                 currentGameStats.clear();
 
+                /*
                 String player1WinMsg = player1.getName() + "'s Game Stats: Wins: " + player1.getWins() + " | Points: " + player1.getPoints();
                 System.out.println(player1WinMsg);
+                */
+
+                String player1WinMsg = player1.getName() + "'s Wins: " + player1.getWins() + " | Points: " + player1.getPoints();
+                Optional<String> optionalPlayer1WinMsg = Optional.ofNullable(player1WinMsg);
+
+                optionalPlayer1WinMsg.ifPresent(System.out::println);
 
                 playAgain(winningCombos, losingCombos);
 
