@@ -1,6 +1,7 @@
 package rockpaperscissors;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Game implements PlayGame {
     public static void main(String[] args) {
@@ -107,6 +108,7 @@ public class Game implements PlayGame {
      */
     public void startGame(User player1, User player2, ArrayList<String> winningCombos, ArrayList<String> losingCombos) {
 
+        List<String> gameHistory;
         Scanner startGameScanner = new Scanner(System.in);
         String player1Choice = startGameScanner.nextLine();
 
@@ -125,9 +127,6 @@ public class Game implements PlayGame {
             ArrayList<String> currentGameStats = new ArrayList<>();
             currentGameStats.add(String.valueOf(new ArrayList<String>(Arrays.asList(player1.getChoice(), computer.getChoice()))));
 
-            // Make currentGameStats a List/Collection and use a lambda expression to stream/map contents to gameHistory before clearing currentGameStats
-            ArrayList<Object> gameHistory = new ArrayList<>();
-
 
             if (currentGameStats.get(0).equalsIgnoreCase(winningCombos.get(0)) || currentGameStats.get(0).equalsIgnoreCase(winningCombos.get(1)) || currentGameStats.get(0).equalsIgnoreCase(winningCombos.get(2))) {
 
@@ -139,7 +138,7 @@ public class Game implements PlayGame {
 
                 System.out.println(player1.getName() + " wins! Congratulations!");
 
-                gameHistory.add(currentGameStats);
+                gameHistory = currentGameStats.stream().collect(Collectors.toCollection(ArrayList :: new));
                 currentGameStats.clear();
 
                 String player1WinMsg = player1.getName() + "'s Wins: " + player1.getWins() + " | Points: " + player1.getPoints();
@@ -164,7 +163,6 @@ public class Game implements PlayGame {
 
                 optionalComputerWinMsg.ifPresent(System.out::println);
 
-                gameHistory.add(currentGameStats);
                 currentGameStats.clear();
 
                 playAgain(winningCombos, losingCombos);
@@ -184,7 +182,6 @@ public class Game implements PlayGame {
 
                  */
 
-                gameHistory.add(currentGameStats);
                 currentGameStats.clear();
 
                 playAgain(winningCombos, losingCombos);
