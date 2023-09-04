@@ -1,10 +1,6 @@
 package rockpaperscissors;
 
-import java.util.Scanner;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Random;
-import java.util.Optional;
+import java.util.*;
 
 public class Game implements PlayGame {
     public static void main(String[] args) {
@@ -48,10 +44,44 @@ public class Game implements PlayGame {
 
 
     @Override
-    public void getOpponentChoice(User player1, User player2, ArrayList<String> winningCombos, ArrayList<String> losingCombos) {
+    public void getOpponentChoice(User player1, User player2, ArrayList<String> winningCombos, ArrayList<String> losingCombos) throws NoSuchElementException {
 
         System.out.println("Choose your opponent. Type 'Computer' or 'Player 2'.");
-        Scanner opponentChoiceScanner = new Scanner(System.in);
+
+
+        try (Scanner opponentChoiceScanner = new Scanner(System.in)) {
+
+            String opponentChoice = opponentChoiceScanner.nextLine();
+
+            if (opponentChoice.equalsIgnoreCase("Computer")) {
+
+                System.out.println("You've chosen to play against the computer.");
+                System.out.println("Player 1, you're up first! Enter your choice: 'Rock', 'Paper', or 'Scissors'.");
+
+                startGame(player1, player2, winningCombos, losingCombos);
+
+            } else if (opponentChoice.equalsIgnoreCase("Player 2")) {
+
+                System.out.println("You've chosen to play against a friend.");
+                // start2PlayerGame(player1);
+                start2PlayerGame(player1, player2, winningCombos, losingCombos);
+
+            } else {
+
+                System.out.println("You must choose between 'Computer' and 'Player2'. Please enter your choice.");
+                getOpponentChoice(player1, player2, winningCombos, losingCombos);
+
+            }
+
+        } catch (NoSuchElementException noSuchElementException) {
+
+            System.err.println("Caught NoSuchElementException: " + noSuchElementException.getMessage());
+        }
+
+
+
+
+        /* Scanner opponentChoiceScanner = new Scanner(System.in);
         String opponentChoice = opponentChoiceScanner.nextLine();
 
         if (opponentChoice.equalsIgnoreCase("Computer")) {
@@ -72,7 +102,7 @@ public class Game implements PlayGame {
             System.out.println("You must choose between 'Computer' and 'Player2'. Please enter your choice.");
             getOpponentChoice(player1, player2, winningCombos, losingCombos);
 
-        }
+        } */
     }
 
 
@@ -247,7 +277,7 @@ public class Game implements PlayGame {
 
             } else if (currentGameStats.get(0).equalsIgnoreCase(losingCombos.get(0)) || currentGameStats.get(0).equalsIgnoreCase(losingCombos.get(1)) || currentGameStats.get(0).equalsIgnoreCase(losingCombos.get(2))){
 
-                System.out.println("Sorry, " + player2.getName() + " wins! You lose!");
+                System.out.println(player2.getName() + " wins!");
 
                 int player2Wins = player2.getWins() + 1;
                 player2.setWins(player2Wins);
