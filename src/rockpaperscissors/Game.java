@@ -311,7 +311,7 @@ public class Game implements PlayGame {
 
                 playAgain(winningCombos, losingCombos);
 
-            } else if (player1Choice.equalsIgnoreCase(player2Choice)) {
+            } else if (player1.getChoice().equalsIgnoreCase(player2.getChoice())) {
 
                 System.out.println("It's a tie!");
 
@@ -324,11 +324,6 @@ public class Game implements PlayGame {
                 playAgain(winningCombos, losingCombos);
             }
 
-        } else {
-
-            System.out.println("You must enter 'Rock', 'Paper', or 'Scissors'. Please enter your choice.");
-            startGame(player1, player2, winningCombos, losingCombos);
-        }
     }
 
 
