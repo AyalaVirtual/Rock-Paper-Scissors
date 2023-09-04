@@ -139,7 +139,6 @@ public class Game implements PlayGame {
 
                 System.out.println(player1.getName() + " wins! Congratulations!");
 
-                // Make currentGameStats a List/Collection and use a lambda expression to stream/map contents to gameHistory before clearing currentGameStats
                 gameHistory.add(currentGameStats);
                 currentGameStats.clear();
 
@@ -165,7 +164,6 @@ public class Game implements PlayGame {
 
                 optionalComputerWinMsg.ifPresent(System.out::println);
 
-                // Make currentGameStats a List/Collection and use a lambda expression to stream/map contents to gameHistory before clearing currentGameStats
                 gameHistory.add(currentGameStats);
                 currentGameStats.clear();
 
@@ -186,7 +184,6 @@ public class Game implements PlayGame {
 
                  */
 
-                // Make currentGameStats a List/Collection and use a lambda expression to stream/map contents to gameHistory before clearing currentGameStats
                 gameHistory.add(currentGameStats);
                 currentGameStats.clear();
 
@@ -279,14 +276,8 @@ public class Game implements PlayGame {
 
                 System.out.println(player1.getName() + " wins! Congratulations!");
 
-                // Make currentGameStats a List/Collection and use a lambda expression to stream/map contents to gameHistory before clearing currentGameStats
                 gameHistory.add(currentGameStats);
                 currentGameStats.clear();
-
-                /*
-                String player1WinMsg = player1.getName() + "'s Game Stats: Wins: " + player1.getWins() + " | Points: " + player1.getPoints();
-                System.out.println(player1WinMsg);
-                */
 
                 String player1WinMsg = player1.getName() + "'s Wins: " + player1.getWins() + " | Points: " + player1.getPoints();
                 Optional<String> optionalPlayer1WinMsg = Optional.ofNullable(player1WinMsg);
@@ -308,7 +299,6 @@ public class Game implements PlayGame {
                 String player2WinMsg = player2.getName() + "'s Game Stats: Wins: " + player2.getWins() + " | Points: " + player2.getPoints();
                 System.out.println(player2WinMsg);
 
-                // Make currentGameStats a List/Collection and use a lambda expression to stream/map contents to gameHistory before clearing currentGameStats
                 gameHistory.add(currentGameStats);
                 currentGameStats.clear();
 
@@ -329,8 +319,7 @@ public class Game implements PlayGame {
 
                      */
 
-                // Make currentGameStats a List/Collection and use a lambda expression to stream/map contents to gameHistory before clearing currentGameStats
-                gameHistory.add(currentGameStats);
+               gameHistory.add(currentGameStats);
                 currentGameStats.clear();
 
                 playAgain(winningCombos, losingCombos);
