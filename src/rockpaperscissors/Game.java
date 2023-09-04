@@ -108,12 +108,18 @@ public class Game implements PlayGame {
     public void startGame(User player1, User player2, ArrayList<String> winningCombos, ArrayList<String> losingCombos) {
 
         List<String> gameHistory;
+
+        /*
         Scanner startGameScanner = new Scanner(System.in);
         String player1Choice = startGameScanner.nextLine();
 
         if ( player1Choice.equalsIgnoreCase("Rock") || player1Choice.equalsIgnoreCase("Paper") || player1Choice.equalsIgnoreCase("Scissors") ) {
 
             player1.setChoice(player1Choice);
+
+         */
+            player1.validateChoice();
+
             System.out.println("You chose " + player1.getChoice() + "! Computer's turn.");
 
             Computer computer = new Computer(0, 0, 0, "", "Computer");
@@ -173,7 +179,7 @@ public class Game implements PlayGame {
 
                 playAgain(winningCombos, losingCombos);
 
-            } else if (player1Choice.equalsIgnoreCase(computerChoice)) {
+            } else if (player1.getChoice().equalsIgnoreCase(computerChoice)) {
 
                 System.out.println("It's a tie!");
 
@@ -185,12 +191,14 @@ public class Game implements PlayGame {
 
                 playAgain(winningCombos, losingCombos);
             }
-
+        /*
         } else {
 
             System.out.println("You must enter 'Rock', 'Paper', or 'Scissors'. Please enter your choice.");
             startGame(player1, player2, winningCombos, losingCombos);
         }
+
+         */
     }
 
 
