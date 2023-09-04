@@ -177,17 +177,6 @@ public class Game implements PlayGame {
             } else if (player1Choice.equalsIgnoreCase(computerChoice)) {
 
                 System.out.println("It's a tie!");
-                /*
-
-                   int player1Ties = player1.getTies() + 1;
-                   player1.setTies(player1Ties);
-                   System.out.println(player1.getTie());
-
-                   int computerTies = computer.getTies() + 1;
-                   computer.setTies(computerTies);
-                   System.out.println(computer.getTies());
-
-                 */
 
                 gameHistory = currentGameStats.stream().collect(Collectors.toCollection(ArrayList :: new));
                 currentGameStats.clear();
@@ -319,17 +308,6 @@ public class Game implements PlayGame {
             } else if (player1Choice.equalsIgnoreCase(player2Choice)) {
 
                 System.out.println("It's a tie!");
-                    /*
-
-                       int player1Ties = player1.getTies() + 1;
-                       player1.setTies(player1Ties);
-                       System.out.println(player1.getTie());
-
-                       int computerTies = computer.getTies() + 1;
-                       computer.setTies(computerTies);
-                       System.out.println(computer.getTies());
-
-                     */
 
                 gameHistory = currentGameStats.stream().collect(Collectors.toCollection(ArrayList :: new));
                 currentGameStats.clear();
