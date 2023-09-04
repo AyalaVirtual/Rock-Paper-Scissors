@@ -143,13 +143,10 @@ public class Game implements PlayGame {
                 gameHistory.add(currentGameStats);
                 currentGameStats.clear();
 
-                // Move optional outside of if/else statement so it only displays (isPresent) if player1 wins, otherwise set to .Empty()
-                String player1WinMsg = player1.getName() + " Wins: " + player1.getWins() + " | Points: " + player1.getPoints();
+                String player1WinMsg = player1.getName() + "'s Wins: " + player1.getWins() + " | Points: " + player1.getPoints();
                 Optional<String> optionalPlayer1WinMsg = Optional.ofNullable(player1WinMsg);
 
-                if (optionalPlayer1WinMsg.isPresent()) {
-                    System.out.println(optionalPlayer1WinMsg);
-                }
+                optionalPlayer1WinMsg.ifPresent(System.out::println);
 
                 playAgain(winningCombos, losingCombos);
 
