@@ -80,7 +80,6 @@ public class Game implements PlayGame {
             } else if (opponentChoice.equalsIgnoreCase("Player 2")) {
 
                 System.out.println("You've chosen to play against a friend.");
-                // start2PlayerGame(player1);
                 start2PlayerGame(player1, player2, winningCombos, losingCombos);
 
             } else {
@@ -325,7 +324,6 @@ public class Game implements PlayGame {
             System.out.println("You must enter 'Rock', 'Paper', or 'Scissors'. Please enter your choice.");
             startGame(player1, player2, winningCombos, losingCombos);
         }
-
     }
 
 
