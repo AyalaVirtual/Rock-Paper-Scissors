@@ -109,80 +109,79 @@ public class Game implements PlayGame {
 
         List<String> gameHistory;
 
-            player1.validateChoice();
+        player1.validateChoice();
 
-            System.out.println("You chose " + player1.getChoice() + "! Computer's turn.");
+        System.out.println("You chose " + player1.getChoice() + "! Computer's turn.");
 
-            Computer computer = new Computer(0, 0, 0, "", "Computer");
+        Computer computer = new Computer(0, 0, 0, "", "Computer");
 
-            String computerChoice = computer.makeRandomChoice();
+        String computerChoice = computer.makeRandomChoice();
 
-            computer.setChoice(computerChoice);
-            System.out.println("Computer chose " + computerChoice);
+        computer.setChoice(computerChoice);
+        System.out.println("Computer chose " + computerChoice);
 
-            ArrayList<String> currentGameStats = new ArrayList<>();
-            currentGameStats.add(String.valueOf(new ArrayList<String>(Arrays.asList(player1.getChoice(), computer.getChoice()))));
+        ArrayList<String> currentGameStats = new ArrayList<>();
+        currentGameStats.add(String.valueOf(new ArrayList<String>(Arrays.asList(player1.getChoice(), computer.getChoice()))));
 
 
-            if (currentGameStats.get(0).equalsIgnoreCase(winningCombos.get(0)) || currentGameStats.get(0).equalsIgnoreCase(winningCombos.get(1)) || currentGameStats.get(0).equalsIgnoreCase(winningCombos.get(2))) {
+        if (currentGameStats.get(0).equalsIgnoreCase(winningCombos.get(0)) || currentGameStats.get(0).equalsIgnoreCase(winningCombos.get(1)) || currentGameStats.get(0).equalsIgnoreCase(winningCombos.get(2))) {
 
-                int player1Wins = player1.getWins() + 1;
-                player1.setWins(player1Wins);
+            int player1Wins = player1.getWins() + 1;
+            player1.setWins(player1Wins);
 
-                int player1Points = player1.getPoints() + 1;
-                player1.setPoints(player1Points);
+            int player1Points = player1.getPoints() + 1;
+            player1.setPoints(player1Points);
 
-                System.out.println(player1.getName() + " wins! Congratulations!");
+            System.out.println(player1.getName() + " wins! Congratulations!");
 
-                gameHistory = currentGameStats.stream().collect(Collectors.toCollection(ArrayList :: new));
-                currentGameStats.clear();
+            gameHistory = currentGameStats.stream().collect(Collectors.toCollection(ArrayList :: new));
+            currentGameStats.clear();
 
-                String player1WinMsg = player1.getName() + "'s Wins: " + player1.getWins() + " | Points: " + player1.getPoints();
-                Optional<String> optionalPlayer1WinMsg = Optional.ofNullable(player1WinMsg);
+            String player1WinMsg = player1.getName() + "'s Wins: " + player1.getWins() + " | Points: " + player1.getPoints();
+            Optional<String> optionalPlayer1WinMsg = Optional.ofNullable(player1WinMsg);
 
-                optionalPlayer1WinMsg.ifPresent(System.out::println);
+            optionalPlayer1WinMsg.ifPresent(System.out::println);
 
-                String gameHistoryMsg = "Game History: " + gameHistory;
-                System.out.println(gameHistoryMsg);
+            String gameHistoryMsg = "Game History: " + gameHistory;
+            System.out.println(gameHistoryMsg);
 
-                playAgain(winningCombos, losingCombos);
+            playAgain(winningCombos, losingCombos);
 
-            } else if (currentGameStats.get(0).equalsIgnoreCase(losingCombos.get(0)) || currentGameStats.get(0).equalsIgnoreCase(losingCombos.get(1)) || currentGameStats.get(0).equalsIgnoreCase(losingCombos.get(2))){
+        } else if (currentGameStats.get(0).equalsIgnoreCase(losingCombos.get(0)) || currentGameStats.get(0).equalsIgnoreCase(losingCombos.get(1)) || currentGameStats.get(0).equalsIgnoreCase(losingCombos.get(2))){
 
-                System.out.println("Sorry, Computer wins! You lose!");
+            System.out.println("Sorry, Computer wins! You lose!");
 
-                int computerWins = computer.getWins() + 1;
-                computer.setWins(computerWins);
+            int computerWins = computer.getWins() + 1;
+            computer.setWins(computerWins);
 
-                int computerPoints = computer.getPoints() + 1;
-                computer.setPoints(computerPoints);
+            int computerPoints = computer.getPoints() + 1;
+            computer.setPoints(computerPoints);
 
-                String computerWinMsg = "Computer Wins: " + computer.getWins() + " | Computer Points: " + computer.getPoints();
-                Optional<String> optionalComputerWinMsg = Optional.ofNullable(computerWinMsg);
+            String computerWinMsg = "Computer Wins: " + computer.getWins() + " | Computer Points: " + computer.getPoints();
+            Optional<String> optionalComputerWinMsg = Optional.ofNullable(computerWinMsg);
 
-                optionalComputerWinMsg.ifPresent(System.out::println);
+            optionalComputerWinMsg.ifPresent(System.out::println);
 
-                gameHistory = currentGameStats.stream().collect(Collectors.toCollection(ArrayList :: new));
-                currentGameStats.clear();
+            gameHistory = currentGameStats.stream().collect(Collectors.toCollection(ArrayList :: new));
+            currentGameStats.clear();
 
-                String gameHistoryMsg = "Game History: " + gameHistory;
-                System.out.println(gameHistoryMsg);
+            String gameHistoryMsg = "Game History: " + gameHistory;
+            System.out.println(gameHistoryMsg);
 
-                playAgain(winningCombos, losingCombos);
+            playAgain(winningCombos, losingCombos);
 
-            } else if (player1.getChoice().equalsIgnoreCase(computerChoice)) {
+        } else if (player1.getChoice().equalsIgnoreCase(computerChoice)) {
 
-                System.out.println("It's a tie!");
+            System.out.println("It's a tie!");
 
-                gameHistory = currentGameStats.stream().collect(Collectors.toCollection(ArrayList :: new));
-                currentGameStats.clear();
+            gameHistory = currentGameStats.stream().collect(Collectors.toCollection(ArrayList :: new));
+            currentGameStats.clear();
 
-                String gameHistoryMsg = "Game History: " + gameHistory;
-                System.out.println(gameHistoryMsg);
+            String gameHistoryMsg = "Game History: " + gameHistory;
+            System.out.println(gameHistoryMsg);
 
-                playAgain(winningCombos, losingCombos);
-            }
-
+            playAgain(winningCombos, losingCombos);
+        }
     }
 
 
