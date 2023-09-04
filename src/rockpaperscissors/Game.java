@@ -161,7 +161,9 @@ public class Game implements PlayGame {
                 computer.setPoints(computerPoints);
 
                 String computerWinMsg = "Computer Wins: " + computer.getWins() + " | Computer Points: " + computer.getPoints();
-                System.out.println(computerWinMsg);
+                Optional<String> optionalComputerWinMsg = Optional.ofNullable(computerWinMsg);
+
+                optionalComputerWinMsg.ifPresent(System.out::println);
 
                 // Make currentGameStats a List/Collection and use a lambda expression to stream/map contents to gameHistory before clearing currentGameStats
                 gameHistory.add(currentGameStats);
