@@ -244,16 +244,21 @@ public class Game implements PlayGame {
         System.out.println("Hi " + player2.getName() + ", Let's play!");
 
         System.out.println(player1.getName() + ", you're up first! Enter your choice: 'Rock', 'Paper', or 'Scissors'.");
-        String player1Choice = twoPlayerScanner.nextLine();
 
-        if ( player1Choice.equalsIgnoreCase("Rock") || player1Choice.equalsIgnoreCase("Paper") || player1Choice.equalsIgnoreCase("Scissors") ) {
+        // String player1Choice = twoPlayerScanner.nextLine();
 
-            player1.setChoice(player1Choice);
-            System.out.println("You chose " + player1.getChoice() + "! " + player2.getName() + "'s turn.");
-            System.out.println(player2.getName() + ", you're up! Enter your choice: 'Rock', 'Paper', or 'Scissors'.");
+        // if ( player1Choice.equalsIgnoreCase("Rock") || player1Choice.equalsIgnoreCase("Paper") || player1Choice.equalsIgnoreCase("Scissors") ) {
+        player1.validateChoice();
 
-            String player2Choice = twoPlayerScanner.nextLine();
-            player2.setChoice(player2Choice);
+        // player1.setChoice(player1Choice);
+        System.out.println("You chose " + player1.getChoice() + "! " + player2.getName() + "'s turn.");
+        System.out.println(player2.getName() + ", you're up! Enter your choice: 'Rock', 'Paper', or 'Scissors'.");
+
+        // String player2Choice = twoPlayerScanner.nextLine();
+
+        player2.validateChoice();
+        // player2.setChoice(player2Choice);
+
             System.out.println(player2.getName() + " chose " + player2.getChoice() + "!");
 
             ArrayList<String> currentGameStats = new ArrayList<>();
