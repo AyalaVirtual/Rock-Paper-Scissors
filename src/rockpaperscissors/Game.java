@@ -245,6 +245,8 @@ public class Game implements PlayGame {
     @Override
     public void start2PlayerGame(User player1, User player2, ArrayList<String> winningCombos, ArrayList<String> losingCombos) {
 
+        List<String> gameHistory;
+
         System.out.println("Enter name of Player 2.");
 
         Scanner twoPlayerScanner = new Scanner(System.in);
@@ -270,10 +272,6 @@ public class Game implements PlayGame {
             currentGameStats.add(String.valueOf(new ArrayList<String>(Arrays.asList(player1.getChoice(), player2.getChoice()))));
 
 
-            // Make currentGameStats a List/Collection and use a lambda expression to stream/map contents to gameHistory before clearing currentGameStats
-            ArrayList<Object> gameHistory = new ArrayList<>();
-
-
             if (currentGameStats.get(0).equalsIgnoreCase(winningCombos.get(0)) || currentGameStats.get(0).equalsIgnoreCase(winningCombos.get(1)) || currentGameStats.get(0).equalsIgnoreCase(winningCombos.get(2))) {
 
                 int player1Wins = player1.getWins() + 1;
@@ -284,13 +282,16 @@ public class Game implements PlayGame {
 
                 System.out.println(player1.getName() + " wins! Congratulations!");
 
-                gameHistory.add(currentGameStats);
-                currentGameStats.clear();
-
                 String player1WinMsg = player1.getName() + "'s Wins: " + player1.getWins() + " | Points: " + player1.getPoints();
                 Optional<String> optionalPlayer1WinMsg = Optional.ofNullable(player1WinMsg);
 
                 optionalPlayer1WinMsg.ifPresent(System.out::println);
+
+                gameHistory = currentGameStats.stream().collect(Collectors.toCollection(ArrayList :: new));
+                currentGameStats.clear();
+
+                String gameHistoryMsg = "Game History: " + gameHistory;
+                System.out.println(gameHistoryMsg);
 
                 playAgain(winningCombos, losingCombos);
 
@@ -307,8 +308,11 @@ public class Game implements PlayGame {
                 String player2WinMsg = player2.getName() + "'s Game Stats: Wins: " + player2.getWins() + " | Points: " + player2.getPoints();
                 System.out.println(player2WinMsg);
 
-                gameHistory.add(currentGameStats);
+                gameHistory = currentGameStats.stream().collect(Collectors.toCollection(ArrayList :: new));
                 currentGameStats.clear();
+
+                String gameHistoryMsg = "Game History: " + gameHistory;
+                System.out.println(gameHistoryMsg);
 
                 playAgain(winningCombos, losingCombos);
 
@@ -327,8 +331,11 @@ public class Game implements PlayGame {
 
                      */
 
-               gameHistory.add(currentGameStats);
+                gameHistory = currentGameStats.stream().collect(Collectors.toCollection(ArrayList :: new));
                 currentGameStats.clear();
+
+                String gameHistoryMsg = "Game History: " + gameHistory;
+                System.out.println(gameHistoryMsg);
 
                 playAgain(winningCombos, losingCombos);
             }
