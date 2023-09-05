@@ -6,8 +6,8 @@ import java.util.Random;
 public class Computer extends Player {
     private static final String name = "Computer";
 
-    public Computer(int wins, int losses, int points, String choice, String name) {
-        super(wins, losses, points, choice);
+    public Computer(int wins, int losses, int points, int ties, String choice, String name) {
+        super(wins, losses, points, ties, choice);
 
     }
 
@@ -28,7 +28,6 @@ public class Computer extends Player {
 
         return computerChoice;
     }
-
 
 
 }

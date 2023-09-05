@@ -18,9 +18,9 @@ public class Game implements PlayGame {
         losingCombos.add(String.valueOf(new ArrayList<String>(Arrays.asList("Paper", "Scissors"))));
         losingCombos.add(String.valueOf(new ArrayList<String>(Arrays.asList("Scissors", "Rock"))));
 
-        Computer computer = new Computer(0, 0, 0, "", "Computer");
-        User player1 = new User(0, 0, 0, "", "Player 1");
-        User player2 = new User(0, 0, 0, "", "Player 2");
+        Computer computer = new Computer(0, 0, 0,0, "", "Computer");
+        User player1 = new User(0, 0, 0, 0, "", "Player 1");
+        User player2 = new User(0, 0, 0, 0, "", "Player 2");
 
         game.startIntro(computer, player1, player2, winningCombos, losingCombos);
     }

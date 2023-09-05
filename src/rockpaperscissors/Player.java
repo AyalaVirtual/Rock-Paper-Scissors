@@ -4,12 +4,14 @@ public abstract class Player {
     private int wins;
     private int losses;
     private int points;
+    private int ties;
     private String choice;
 
-    public Player(int wins, int losses, int points, String choice) {
+    public Player(int wins, int losses, int points, int ties, String choice) {
         this.wins = wins;
         this.losses = losses;
         this.points = points;
+        this.ties = ties;
         this.choice = choice;
     }
 
@@ -38,6 +40,14 @@ public abstract class Player {
         this.points = points;
     }
 
+    public int getTies() {
+        return this.ties;
+    }
+
+    public void setTies(int ties)  {
+        this.ties = ties;
+    }
+
     public String getChoice() {
         return this.choice;
     }
@@ -45,7 +55,6 @@ public abstract class Player {
     public void setChoice(String choice) {
         this.choice = choice;
     }
-
 
 
 }

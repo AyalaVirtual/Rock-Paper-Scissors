@@ -6,8 +6,8 @@ public class User extends Player {
     private String name;
 
 
-    public User(/* String name, */ int wins, int losses, int points, String choice, String name) {
-        super(/* name, */ wins, losses, points, choice);
+    public User(int wins, int losses, int points, int ties, String choice, String name) {
+        super(wins, losses, points, ties, choice);
         this.name = name;
     }
 
@@ -18,6 +18,7 @@ public class User extends Player {
     public void setName(String name) {
         this.name = name;
     }
+
 
     public void validateChoice() {
         Scanner validChoiceScanner = new Scanner(System.in);
