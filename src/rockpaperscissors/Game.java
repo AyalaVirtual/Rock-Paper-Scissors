@@ -82,7 +82,7 @@ public class Game implements PlayGame {
 
             } else {
 
-                System.out.println("You must choose between 'Computer' and 'Player2'. Please enter your choice.");
+                System.out.println("Invalid input. You must choose between 'Computer' and 'Player2'. Please try again.");
                 getOpponentChoice(computer, player1, player2, winningCombos, losingCombos);
 
             }
@@ -204,10 +204,14 @@ public class Game implements PlayGame {
 
     /**
      *
+     * @param computer object instance of Computer Class representing the computer in 1-player games
+     * @param player1 object instance of User Class representing Player 1 in 2-player games
+     * @param player2 object instance of User Class representing Player 2 in 2-player games
      * @param winningCombos ArrayList of all possible winning combinations, with first index of each inner List representing player1's move, and the second index representing the opponent (either computer or player2)
      * @param losingCombos ArrayList of all possible losing combinations, with first index of each inner List representing player1's move, and the second index representing the opponent (either computer or player2)
      *
      * Prompts player1 and checks for invalid input to determine if they want to continue playing
+     *
      */
     @Override
     public void playAgain(Computer computer, User player1, User player2, ArrayList<String> winningCombos, ArrayList<String> losingCombos) {
@@ -224,7 +228,7 @@ public class Game implements PlayGame {
             System.out.println("Ok, thanks for playing!");
 
         } else {
-            System.out.println("Invalid input. You must enter 'Yes' or 'No'.");
+            System.out.println("Invalid input. You must enter 'Yes' or 'No'. Please try again");
             playAgain(computer, player1, player2, winningCombos, losingCombos);
         }
     }
