@@ -152,7 +152,7 @@ public class Game implements PlayGame {
             String gameHistoryMsg = "Game History: " + gameHistory;
             System.out.println(gameHistoryMsg);
 
-            playAgain(winningCombos, losingCombos);
+            playAgain(winningCombos, losingCombos, player1, player2);
 
         } else if (currentGameStats.get(0).equalsIgnoreCase(losingCombos.get(0)) || currentGameStats.get(0).equalsIgnoreCase(losingCombos.get(1)) || currentGameStats.get(0).equalsIgnoreCase(losingCombos.get(2))){
 
@@ -175,7 +175,7 @@ public class Game implements PlayGame {
             String gameHistoryMsg = "Game History: " + gameHistory;
             System.out.println(gameHistoryMsg);
 
-            playAgain(winningCombos, losingCombos);
+            playAgain(winningCombos, losingCombos, player1, player2);
 
         } else if (player1.getChoice().equalsIgnoreCase(computerChoice)) {
 
@@ -187,7 +187,7 @@ public class Game implements PlayGame {
             String gameHistoryMsg = "Game History: " + gameHistory;
             System.out.println(gameHistoryMsg);
 
-            playAgain(winningCombos, losingCombos);
+            playAgain(winningCombos, losingCombos, player1, player2);
         }
     }
 
@@ -200,7 +200,7 @@ public class Game implements PlayGame {
      * Prompts player1 and checks for invalid input to determine if they want to continue playing
      */
     @Override
-    public void playAgain(ArrayList<String> winningCombos, ArrayList<String> losingCombos) {
+    public void playAgain(ArrayList<String> winningCombos, ArrayList<String> losingCombos, User player1, User player2) {
         System.out.println("Would you like to play again? Enter 'Yes' or 'No'.");
 
         Scanner playAgainScanner = new Scanner(System.in);
@@ -214,7 +214,7 @@ public class Game implements PlayGame {
 
         } else {
             System.out.println("Invalid input. You must enter 'Yes' or 'No'.");
-            playAgain(winningCombos, losingCombos);
+            playAgain(winningCombos, losingCombos, player1, player2);
         }
     }
 
@@ -277,7 +277,7 @@ public class Game implements PlayGame {
             String gameHistoryMsg = "Game History: " + gameHistory;
             System.out.println(gameHistoryMsg);
 
-            playAgain(winningCombos, losingCombos);
+            playAgain(winningCombos, losingCombos, player1, player2);
 
         } else if (currentGameStats.get(0).equalsIgnoreCase(losingCombos.get(0)) || currentGameStats.get(0).equalsIgnoreCase(losingCombos.get(1)) || currentGameStats.get(0).equalsIgnoreCase(losingCombos.get(2))){
 
@@ -300,7 +300,7 @@ public class Game implements PlayGame {
             String gameHistoryMsg = "Game History: " + gameHistory;
             System.out.println(gameHistoryMsg);
 
-            playAgain(winningCombos, losingCombos);
+            playAgain(winningCombos, losingCombos, player1, player2);
 
         } else if (player1.getChoice().equalsIgnoreCase(player2.getChoice())) {
 
@@ -312,7 +312,7 @@ public class Game implements PlayGame {
             String gameHistoryMsg = "Game History: " + gameHistory;
             System.out.println(gameHistoryMsg);
 
-            playAgain(winningCombos, losingCombos);
+            playAgain(winningCombos, losingCombos, player1, player2);
         }
 
     }
