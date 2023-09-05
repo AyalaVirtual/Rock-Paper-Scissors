@@ -65,7 +65,6 @@ public class Game implements PlayGame {
 
         System.out.println("Choose your opponent. Type 'Computer' or 'Player 2'.");
 
-
         try (Scanner opponentChoiceScanner = new Scanner(System.in)) {
 
             String opponentChoice = opponentChoiceScanner.nextLine();
@@ -73,8 +72,6 @@ public class Game implements PlayGame {
             if (opponentChoice.equalsIgnoreCase("Computer")) {
 
                 System.out.println("You've chosen to play against the computer.");
-                System.out.println("Player 1, you're up first! Enter your choice: 'Rock', 'Paper', or 'Scissors'.");
-
                 startGame(player1, player2, winningCombos, losingCombos);
 
             } else if (opponentChoice.equalsIgnoreCase("Player 2")) {
@@ -107,7 +104,15 @@ public class Game implements PlayGame {
      */
     public void startGame(User player1, User player2, ArrayList<String> winningCombos, ArrayList<String> losingCombos) {
 
-        List<String> gameHistory;
+        System.out.println("Enter name of Player 1.");
+
+        Scanner startGameScanner = new Scanner(System.in);
+        String player1Name = startGameScanner.nextLine();
+
+        player1.setName(player1Name);
+        System.out.println("Hi " + player1.getName() + "! Let's play!");
+
+        System.out.println(player1.getName() + ", you're up first! Enter your choice: 'Rock', 'Paper', or 'Scissors'.");
 
         player1.validateChoice();
 
@@ -122,6 +127,8 @@ public class Game implements PlayGame {
 
         ArrayList<String> currentGameStats = new ArrayList<>();
         currentGameStats.add(String.valueOf(new ArrayList<String>(Arrays.asList(player1.getChoice(), computer.getChoice()))));
+
+        List<String> gameHistory;
 
 
         if (currentGameStats.get(0).equalsIgnoreCase(winningCombos.get(0)) || currentGameStats.get(0).equalsIgnoreCase(winningCombos.get(1)) || currentGameStats.get(0).equalsIgnoreCase(winningCombos.get(2))) {
