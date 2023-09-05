@@ -37,15 +37,15 @@ public class Game implements PlayGame {
     @Override
     public void startIntro(ArrayList<String> winningCombos, ArrayList<String> losingCombos, User player1, User player2) {
         System.out.println("Welcome to Rock, Paper, Scissors!");
-        System.out.println("Enter name of Player 1.");
 
-        Scanner startIntroScanner = new Scanner(System.in);
-
-        String player1Name = startIntroScanner.nextLine();
-
-        player1.setName(player1Name);
-        System.out.println("Hi " + player1.getName() + "! Let's play!");
-
+        System.out.println("MAIN MENU");
+        System.out.println("**********");
+        System.out.println("1. Type 'Computer' to play in 1-player mode.");
+        System.out.println("2. Type 'Player 2' to play in 2-player mode.");
+        /*
+        User player1 = new User(0, 0, 0, "", "Player 1");
+        User player2 = new User(0, 0, 0, "", "Player 2");
+        */
         getOpponentChoice(player1, player2, winningCombos, losingCombos);
     }
 
