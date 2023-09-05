@@ -102,6 +102,7 @@ public class Game implements PlayGame {
      * @param winningCombos ArrayList of all possible winning combinations, with first index of each inner List representing player1's move, and the second index representing the opponent (either computer or player2)
      * @param losingCombos ArrayList of all possible losing combinations, with first index of each inner List representing player1's move, and the second index representing the opponent (either computer or player2)
      *
+     * Starts 1-player mode gameplay, prompting player1 to enter their name and choice of move before checking that input is valid before adding it to an ArrayList (currentGameStats) and comparing that ArrayList to the ArrayLists of all possible winning and losing combos to determine game outcome, announce winner, increment wins/losses/ties and points before printing game stats and history of moves made by player1 and computer before calling another method ( playAgain() ) to determine if players want to continue playing
      *
      */
     public void startGame(Computer computer, User player1, User player2, ArrayList<String> winningCombos, ArrayList<String> losingCombos) {
