@@ -43,7 +43,7 @@ public class Game implements PlayGame {
         System.out.println("Welcome to Rock, Paper, Scissors!");
 
         System.out.println("MAIN MENU");
-        System.out.println("==========");
+        System.out.println("**********");
         System.out.println("1. Type 'Computer' to play in 1-player mode.");
         System.out.println("2. Type 'Player 2' to play in 2-player mode.");
 
