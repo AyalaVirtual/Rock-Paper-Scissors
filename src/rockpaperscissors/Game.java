@@ -19,7 +19,10 @@ public class Game implements PlayGame {
         losingCombos.add(String.valueOf(new ArrayList<String>(Arrays.asList("Scissors", "Rock"))));
 
 
-        game.startIntro(winningCombos, losingCombos);
+        User player1 = new User(0, 0, 0, "", "Player 1");
+        User player2 = new User(0, 0, 0, "", "Player 2");
+
+        game.startIntro(winningCombos, losingCombos, player1, player2);
 
     }
 
@@ -32,14 +35,11 @@ public class Game implements PlayGame {
      * Prints intro message and prompts user/player1 for their name before calling the next method, getOpponentChoice() to determine 1-player or 2-player mode
      */
     @Override
-    public void startIntro(ArrayList<String> winningCombos, ArrayList<String> losingCombos) {
+    public void startIntro(ArrayList<String> winningCombos, ArrayList<String> losingCombos, User player1, User player2) {
         System.out.println("Welcome to Rock, Paper, Scissors!");
         System.out.println("Enter name of Player 1.");
 
         Scanner startIntroScanner = new Scanner(System.in);
-
-        User player1 = new User(0, 0, 0, "", "Player 1");
-        User player2 = new User(0, 0, 0, "", "Player 2");
 
         String player1Name = startIntroScanner.nextLine();
 
@@ -200,7 +200,7 @@ public class Game implements PlayGame {
         String playAgainInput = playAgainScanner.nextLine();
 
         if (playAgainInput.equalsIgnoreCase("Yes")) {
-            startIntro(winningCombos, losingCombos);
+            startIntro(winningCombos, losingCombos, player1, player2);
 
         } else if (playAgainInput.equalsIgnoreCase("No")) {
             System.out.println("Ok, thanks for playing!");
