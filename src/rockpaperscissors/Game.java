@@ -18,12 +18,11 @@ public class Game implements PlayGame {
         losingCombos.add(String.valueOf(new ArrayList<String>(Arrays.asList("Paper", "Scissors"))));
         losingCombos.add(String.valueOf(new ArrayList<String>(Arrays.asList("Scissors", "Rock"))));
 
-
+        Computer computer = new Computer(0, 0, 0, "", "Computer");
         User player1 = new User(0, 0, 0, "", "Player 1");
         User player2 = new User(0, 0, 0, "", "Player 2");
 
-        game.startIntro(winningCombos, losingCombos, player1, player2);
-
+        game.startIntro(computer, player1, player2, winningCombos, losingCombos);
     }
 
 
@@ -35,19 +34,16 @@ public class Game implements PlayGame {
      * Prints intro message and prompts user/player1 for their name before calling the next method, getOpponentChoice() to determine 1-player or 2-player mode
      */
     @Override
-    public void startIntro(ArrayList<String> winningCombos, ArrayList<String> losingCombos, User player1, User player2) {
+    public void startIntro(Computer computer, User player1, User player2, ArrayList<String> winningCombos, ArrayList<String> losingCombos) {
 
         System.out.println("Welcome to Rock, Paper, Scissors!");
 
         System.out.println("MAIN MENU");
-        System.out.println("**********");
+        System.out.println("==========");
         System.out.println("1. Type 'Computer' to play in 1-player mode.");
         System.out.println("2. Type 'Player 2' to play in 2-player mode.");
-        /*
-        User player1 = new User(0, 0, 0, "", "Player 1");
-        User player2 = new User(0, 0, 0, "", "Player 2");
-        */
-        getOpponentChoice(player1, player2, winningCombos, losingCombos);
+
+        getOpponentChoice(computer, player1, player2, winningCombos, losingCombos);
     }
 
 
@@ -62,9 +58,7 @@ public class Game implements PlayGame {
      * Prompts player1 and checks for invalid input before determining if they want to play in 1-player or 2-player mode before calling the corresponding method ( startGame() or start2PlayerGame() )
      */
     @Override
-    public void getOpponentChoice(User player1, User player2, ArrayList<String> winningCombos, ArrayList<String> losingCombos) throws NoSuchElementException {
-
-        System.out.println("Choose your opponent. Type 'Computer' or 'Player 2'.");
+    public void getOpponentChoice(Computer computer, User player1, User player2, ArrayList<String> winningCombos, ArrayList<String> losingCombos) throws NoSuchElementException {
 
         try (Scanner opponentChoiceScanner = new Scanner(System.in)) {
 
@@ -73,17 +67,17 @@ public class Game implements PlayGame {
             if (opponentChoice.equalsIgnoreCase("Computer")) {
 
                 System.out.println("You've chosen to play against the computer.");
-                startGame(player1, player2, winningCombos, losingCombos);
+                startGame(computer, player1, player2, winningCombos, losingCombos);
 
             } else if (opponentChoice.equalsIgnoreCase("Player 2")) {
 
                 System.out.println("You've chosen to play against a friend.");
-                start2PlayerGame(player1, player2, winningCombos, losingCombos);
+                start2PlayerGame(computer, player1, player2, winningCombos, losingCombos);
 
             } else {
 
                 System.out.println("You must choose between 'Computer' and 'Player2'. Please enter your choice.");
-                getOpponentChoice(player1, player2, winningCombos, losingCombos);
+                getOpponentChoice(computer, player1, player2, winningCombos, losingCombos);
 
             }
 
@@ -103,7 +97,9 @@ public class Game implements PlayGame {
      *
      * Starts 1-player mode gameplay, checking that player1's input is valid before adding it to an ArrayList (currentGameStats) and comparing that ArrayList to the ArrayLists of all possible winning and losing combos to determine game outcome, announce winner, and award points before calling another method ( playAgain() ) to determine if players want to continue playing
      */
-    public void startGame(User player1, User player2, ArrayList<String> winningCombos, ArrayList<String> losingCombos) {
+    public void startGame(Computer computer, User player1, User player2, ArrayList<String> winningCombos, ArrayList<String> losingCombos) {
+
+        List<String> gameHistory;
 
         System.out.println("Enter name of Player 1.");
 
@@ -119,8 +115,6 @@ public class Game implements PlayGame {
 
         System.out.println("You chose " + player1.getChoice() + "! Computer's turn.");
 
-        Computer computer = new Computer(0, 0, 0, "", "Computer");
-
         String computerChoice = computer.makeRandomChoice();
 
         computer.setChoice(computerChoice);
@@ -128,8 +122,6 @@ public class Game implements PlayGame {
 
         ArrayList<String> currentGameStats = new ArrayList<>();
         currentGameStats.add(String.valueOf(new ArrayList<String>(Arrays.asList(player1.getChoice(), computer.getChoice()))));
-
-        List<String> gameHistory;
 
 
         if (currentGameStats.get(0).equalsIgnoreCase(winningCombos.get(0)) || currentGameStats.get(0).equalsIgnoreCase(winningCombos.get(1)) || currentGameStats.get(0).equalsIgnoreCase(winningCombos.get(2))) {
@@ -143,7 +135,6 @@ public class Game implements PlayGame {
             System.out.println(player1.getName() + " wins! Congratulations!");
 
             gameHistory = currentGameStats.stream().collect(Collectors.toCollection(ArrayList :: new));
-            currentGameStats.clear();
 
             String player1WinMsg = player1.getName() + "'s Wins: " + player1.getWins() + " | Points: " + player1.getPoints();
             Optional<String> optionalPlayer1WinMsg = Optional.ofNullable(player1WinMsg);
@@ -153,7 +144,7 @@ public class Game implements PlayGame {
             String gameHistoryMsg = "Game History: " + gameHistory;
             System.out.println(gameHistoryMsg);
 
-            playAgain(winningCombos, losingCombos, player1, player2);
+            playAgain(computer, player1, player2, winningCombos, losingCombos);
 
         } else if (currentGameStats.get(0).equalsIgnoreCase(losingCombos.get(0)) || currentGameStats.get(0).equalsIgnoreCase(losingCombos.get(1)) || currentGameStats.get(0).equalsIgnoreCase(losingCombos.get(2))){
 
@@ -171,12 +162,11 @@ public class Game implements PlayGame {
             optionalComputerWinMsg.ifPresent(System.out::println);
 
             gameHistory = currentGameStats.stream().collect(Collectors.toCollection(ArrayList :: new));
-            currentGameStats.clear();
 
             String gameHistoryMsg = "Game History: " + gameHistory;
             System.out.println(gameHistoryMsg);
 
-            playAgain(winningCombos, losingCombos, player1, player2);
+            playAgain(computer, player1, player2, winningCombos, losingCombos);
 
         } else if (player1.getChoice().equalsIgnoreCase(computerChoice)) {
 
@@ -188,7 +178,7 @@ public class Game implements PlayGame {
             String gameHistoryMsg = "Game History: " + gameHistory;
             System.out.println(gameHistoryMsg);
 
-            playAgain(winningCombos, losingCombos, player1, player2);
+            playAgain(computer, player1, player2, winningCombos, losingCombos);
         }
     }
 
@@ -201,7 +191,7 @@ public class Game implements PlayGame {
      * Prompts player1 and checks for invalid input to determine if they want to continue playing
      */
     @Override
-    public void playAgain(ArrayList<String> winningCombos, ArrayList<String> losingCombos, User player1, User player2) {
+    public void playAgain(Computer computer, User player1, User player2, ArrayList<String> winningCombos, ArrayList<String> losingCombos) {
 
         System.out.println("Would you like to play again? Enter 'Yes' or 'No'.");
 
@@ -209,14 +199,14 @@ public class Game implements PlayGame {
         String playAgainInput = playAgainScanner.nextLine();
 
         if (playAgainInput.equalsIgnoreCase("Yes")) {
-            startIntro(winningCombos, losingCombos, player1, player2);
+            startIntro(computer, player1, player2, winningCombos, losingCombos);
 
         } else if (playAgainInput.equalsIgnoreCase("No")) {
             System.out.println("Ok, thanks for playing!");
 
         } else {
             System.out.println("Invalid input. You must enter 'Yes' or 'No'.");
-            playAgain(winningCombos, losingCombos, player1, player2);
+            playAgain(computer, player1, player2, winningCombos, losingCombos);
         }
     }
 
@@ -231,7 +221,7 @@ public class Game implements PlayGame {
      * Starts 2-player mode gameplay, prompting player2 for their name before prompting players and checking their input is valid before adding it to an ArrayList (currentGameStats) and comparing that ArrayList to the ArrayLists of all possible winning and losing combos to determine game outcome, announce winner, and award points before calling another method ( playAgain() ) to determine if players want to continue playing
      */
     @Override
-    public void start2PlayerGame(User player1, User player2, ArrayList<String> winningCombos, ArrayList<String> losingCombos) {
+    public void start2PlayerGame(Computer computer, User player1, User player2, ArrayList<String> winningCombos, ArrayList<String> losingCombos) {
 
         List<String> gameHistory;
 
@@ -285,7 +275,7 @@ public class Game implements PlayGame {
             String gameHistoryMsg = "Game History: " + gameHistory;
             System.out.println(gameHistoryMsg);
 
-            playAgain(winningCombos, losingCombos, player1, player2);
+            playAgain(computer, player1, player2, winningCombos, losingCombos);
 
         } else if (currentGameStats.get(0).equalsIgnoreCase(losingCombos.get(0)) || currentGameStats.get(0).equalsIgnoreCase(losingCombos.get(1)) || currentGameStats.get(0).equalsIgnoreCase(losingCombos.get(2))){
 
@@ -308,7 +298,7 @@ public class Game implements PlayGame {
             String gameHistoryMsg = "Game History: " + gameHistory;
             System.out.println(gameHistoryMsg);
 
-            playAgain(winningCombos, losingCombos, player1, player2);
+            playAgain(computer, player1, player2, winningCombos, losingCombos);
 
         } else if (player1.getChoice().equalsIgnoreCase(player2.getChoice())) {
 
@@ -320,7 +310,7 @@ public class Game implements PlayGame {
             String gameHistoryMsg = "Game History: " + gameHistory;
             System.out.println(gameHistoryMsg);
 
-            playAgain(winningCombos, losingCombos, player1, player2);
+            playAgain(computer, player1, player2, winningCombos, losingCombos);
         }
     }
 
