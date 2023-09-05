@@ -36,6 +36,7 @@ public class Game implements PlayGame {
      */
     @Override
     public void startIntro(ArrayList<String> winningCombos, ArrayList<String> losingCombos, User player1, User player2) {
+
         System.out.println("Welcome to Rock, Paper, Scissors!");
 
         System.out.println("MAIN MENU");
@@ -201,6 +202,7 @@ public class Game implements PlayGame {
      */
     @Override
     public void playAgain(ArrayList<String> winningCombos, ArrayList<String> losingCombos, User player1, User player2) {
+
         System.out.println("Would you like to play again? Enter 'Yes' or 'No'.");
 
         Scanner playAgainScanner = new Scanner(System.in);
@@ -233,11 +235,17 @@ public class Game implements PlayGame {
 
         List<String> gameHistory;
 
-        System.out.println("Enter name of Player 2.");
+        System.out.println("Enter name of Player 1.");
 
         Scanner twoPlayerScanner = new Scanner(System.in);
-        String player2Name = twoPlayerScanner.nextLine();
 
+        String player1Name = twoPlayerScanner.nextLine();
+        player1.setName(player1Name);
+        System.out.println("Hi " + player1.getName() + "! Let's play!");
+
+        System.out.println("Enter name of Player 2.");
+
+        String player2Name = twoPlayerScanner.nextLine();
         player2.setName(player2Name);
         System.out.println("Hi " + player2.getName() + ", Let's play!");
 
@@ -314,7 +322,6 @@ public class Game implements PlayGame {
 
             playAgain(winningCombos, losingCombos, player1, player2);
         }
-
     }
 
 
