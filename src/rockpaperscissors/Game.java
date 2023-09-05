@@ -18,7 +18,7 @@ public class Game implements PlayGame {
         losingCombos.add(String.valueOf(new ArrayList<String>(Arrays.asList("Paper", "Scissors"))));
         losingCombos.add(String.valueOf(new ArrayList<String>(Arrays.asList("Scissors", "Rock"))));
 
-        Computer computer = new Computer(0, 0, 0,0, "", "Computer");
+        Computer computer = new Computer(0, 0, 0, 0, "", "Computer");
         User player1 = new User(0, 0, 0, 0, "", "Player 1");
         User player2 = new User(0, 0, 0, 0, "", "Player 2");
 
@@ -139,7 +139,7 @@ public class Game implements PlayGame {
 
             gameHistory = currentGameStats.stream().collect(Collectors.toCollection(ArrayList :: new));
 
-            String player1WinMsg = player1.getName() + "'s Wins: " + player1.getWins() + " | Points: " + player1.getPoints();
+            String player1WinMsg = player1.getName() + "' Stats: Wins = " + player1.getWins() + " | Losses = " + player1.getLosses() + " | Ties = " + player1.getTies() + " | Points = " + player1.getPoints();
             Optional<String> optionalPlayer1WinMsg = Optional.ofNullable(player1WinMsg);
 
             optionalPlayer1WinMsg.ifPresent(System.out::println);
@@ -162,7 +162,7 @@ public class Game implements PlayGame {
             int player1Losses = player1.getLosses() + 1;
             player1.setLosses(player1Losses);
 
-            String computerWinMsg = "Computer Wins: " + computer.getWins() + " | Computer Points: " + computer.getPoints();
+            String computerWinMsg = "Computer's Stats: Wins = " + computer.getWins() + " | Losses = " + computer.getLosses() + " | Ties = " + computer.getTies() + " | Points = " + computer.getPoints();
             Optional<String> optionalComputerWinMsg = Optional.ofNullable(computerWinMsg);
 
             optionalComputerWinMsg.ifPresent(System.out::println);
@@ -185,7 +185,6 @@ public class Game implements PlayGame {
             System.out.println("It's a tie!");
 
             gameHistory = currentGameStats.stream().collect(Collectors.toCollection(ArrayList :: new));
-            currentGameStats.clear();
 
             String gameHistoryMsg = "Game History: " + gameHistory;
             System.out.println(gameHistoryMsg);
@@ -279,7 +278,7 @@ public class Game implements PlayGame {
 
             System.out.println(player1.getName() + " wins! Congratulations!");
 
-            String player1WinMsg = player1.getName() + "'s Wins: " + player1.getWins() + " | Points: " + player1.getPoints();
+            String player1WinMsg = player1.getName() + "' Stats: Wins = " + player1.getWins() + " | Losses = " + player1.getLosses() + " | Ties = " + player1.getTies() + " | Points = " + player1.getPoints();
             Optional<String> optionalPlayer1WinMsg = Optional.ofNullable(player1WinMsg);
 
             optionalPlayer1WinMsg.ifPresent(System.out::println);
@@ -305,7 +304,7 @@ public class Game implements PlayGame {
             int player1Losses = player1.getLosses() + 1;
             player1.setLosses(player1Losses);
 
-            String player2WinMsg = player2.getName() + "'s Game Stats: Wins: " + player2.getWins() + " | Points: " + player2.getPoints();
+            String player2WinMsg = player2.getName() + "' Stats: Wins = " + player2.getWins() + " | Losses = " + player2.getLosses() + " | Ties = " + player2.getTies() + " | Points = " + player2.getPoints();
             Optional<String> optionalPlayer2WinMsg = Optional.ofNullable(player2WinMsg);
 
             optionalPlayer2WinMsg.ifPresent(System.out::println);
@@ -332,7 +331,6 @@ public class Game implements PlayGame {
             System.out.println("Player 2 Ties: " + player2.getTies());
 
             gameHistory = currentGameStats.stream().collect(Collectors.toCollection(ArrayList :: new));
-            currentGameStats.clear();
 
             String gameHistoryMsg = "Game History: " + gameHistory;
             System.out.println(gameHistoryMsg);
