@@ -1,6 +1,6 @@
 # Tic-Tac-Toe
 
-A simple Rock, Paper, Scissors game played in the console, with options for both 1-player and 2-player mode.
+An engaging implementation of the classic Rock, Paper, Scissors game, designed to be played directly in the terminal using Java. This project presents a simple yet enjoyable gaming experience, offering two distinct modes of play: a one-player mode, where you can challenge the computer's randomized choices, and a two-player mode, perfect for playing with a friend. 
 
 ## Introduction
 
